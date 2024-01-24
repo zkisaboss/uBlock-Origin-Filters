@@ -1,3 +1,6 @@
+*_ad_$media,domain=youtube.com,3p
+youtube.com,youtube-nocookie.com##+js(set, ytInitialPlayerResponse.adPlacements, undefined)
+
 ! Header - country code
 www.youtube.com##ytd-topbar-logo-renderer>#country-code
 ! Header - block yoodle image/animations from being fetched (falls back to normal logo)
@@ -12,6 +15,8 @@ www.youtube.com###voice-search-button
 www.youtube.com##.style-default.ytd-masthead.style-scope
 ! Header - alerts button
 !www.youtube.com##ytd-notification-topbar-button-renderer
+! Header - alerts notification icon (add later)
+www.youtube.com##.yt-spec-icon-badge-shape__badge
 
 ! Sidebar - Shorts button
 www.youtube.com##.ytd-guide-entry-renderer[title="Shorts"], .ytd-mini-guide-entry-renderer[title="Shorts"]
@@ -25,7 +30,7 @@ www.youtube.com##.ytd-guide-entry-renderer[title="Your videos"]
 www.youtube.com##.ytd-guide-entry-renderer[href="/feed/clips"]
 ! Sidebar - Sign in section (if not logged in)
 www.youtube.com##ytd-guide-signin-promo-renderer
-! Sidebar - newness subscribtions dot
+! Sidebar - newness subscriptions dot
 www.youtube.com###newness-dot
 ! Sidebar - Browse channels button
 www.youtube.com##ytd-guide-entry-renderer:has(#endpoint[href="/feed/guide_builder"])
@@ -38,82 +43,19 @@ www.youtube.com##.ytd-guide-entry-renderer[title="Send feedback"]
 ! Sidebar - Footer Section (primary links, secondary links, & copyright)
 www.youtube.com##ytd-guide-renderer #footer
 
-! Homepage - feed-filter bar 
-!www.youtube.com##ytd-feed-filter-chip-bar-renderer:has(yt-chip-cloud-chip-renderer[chip-style=STYLE_HOME_FILTER])
-! Homepage & Subscriptions - Shorts section
-www.youtube.com##[is-shorts]
-! Homepage - game shelf
-www.youtube.com##ytd-rich-shelf-renderer[has-rounded-box-art-thumbnail-style]
-! Homepage - free movies (targets movies channelID
-!www.youtube.com##ytd-rich-shelf-renderer:has(a[href="/channel/UClgRkhTL3_hImCAmdLfDE4g"])
-! Homepage - community posts
-!www.youtube.com##ytd-rich-shelf-renderer:has(ytd-rich-item-renderer[is-post])
-! Homepage - breaking news shelf
-www.youtube.com##ytd-rich-shelf-renderer:has(#title:has-text(Breaking news))
-m.youtube.com##ytm-rich-section-renderer:has(.rich-shelf-title:has-text(Breaking news))
-! Homepage - brand featured banner/ shelf #40
-www.youtube.com##ytd-rich-shelf-renderer:has(ytd-badge-supported-renderer#featured-badge)
-www.youtube.com##ytd-statement-banner-renderer
-www.youtube.com##ytd-brand-video-singleton-renderer
-www.youtube.com##ytd-brand-video-shelf-renderer
-www.youtube.com##.ytd-brand-video-shelf-renderer
-! Homepage - mixes
-!www.youtube.com##ytd-rich-item-renderer:has(ytd-thumbnail-overlay-bottom-panel-renderer)
-! Homepage - movies free with ads
-!www.youtube.com##ytd-rich-item-renderer:has(.badge-style-type-ypc> span:has-text(Free with Ads))
-! Homepage - "new to you" (#2)
-!www.youtube.com##ytd-rich-item-renderer.style-scope:has(>.ytd-feed-nudge-renderer)
-!www.youtube.com##.ytd-rich-item-renderer:has(>.ytd-feed-nudge-renderer)
-! Homepage - video-attached survey
-!www.youtube.com###attached-survey
+! Homepage - distractions
+www.youtube.com##ytd-rich-shelf-renderer
 
-! Search - Hide Shorts (shelf renderer)
-www.youtube.com##ytd-reel-shelf-renderer
-! Search - Hide Shorts (video renderer)
-www.youtube.com##ytd-search ytd-video-renderer [overlay-style="SHORTS"]:upward(ytd-video-renderer)
-! Search - People also watched, Latest from channel, For you, Previously watched, Channels new to you
-www.youtube.com##:matches-path(/results) ytd-shelf-renderer
-! Search - People also search for
-www.youtube.com##:matches-path(/results) ytd-horizontal-card-list-renderer
-! Search - Featured channels
-www.youtube.com##:matches-path(/results) ytd-universal-watch-card-renderer
-! Search - channel mix
-www.youtube.com##ytd-radio-renderer
+! Search - shorts button in chip renderer
+www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
+! Search - keep videos (without shorts) and channels
+www.youtube.com##ytd-search ytd-item-section-renderer>#contents>:not(ytd-video-renderer,ytd-channel-renderer),ytd-secondary-search-container-renderer,ytd-video-renderer:has([overlay-style="SHORTS"])
 ! Search - channel description
 www.youtube.com##:matches-path(/results) .ytd-channel-renderer#description
 
-! Channel - Hide the Shorts tab
-www.youtube.com##[tab-title="Shorts"]
-! Channel Shelve - recognized channel member
-www.youtube.com##.ytd-recognition-shelf-renderer
-! Channel Shelve - members only videos
-www.youtube.com##ytd-shelf-renderer:has(.badge-style-type-members-only)
-! Channel Shelve - featured channels
-www.youtube.com##ytd-shelf-renderer:has(ytd-channel-renderer):has(.grid-subheader:not(:has(>#title-container[hidden])))
-! Channel Shelve - channel scroller
-www.youtube.com##ytd-shelf-renderer:has(ytd-grid-channel-renderer)
-! Channel header/homepage - channel banner
-www.youtube.com##.banner-visible-area
-www.youtube.com##.page-header-banner
-! Channel header/homepage - home page links
-www.youtube.com###channel-header > #links-holder
-www.youtube.com###channel-header-links
-! Channel header/homepage - channel handle
-www.youtube.com###meta>p:has(>#channel-handle)
-www.youtube.com##.meta-item:has(>#channel-handle)
-! Channel tab - channel store
-www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Store))
-www.youtube.com##yt-tab-shape[tab-title="Store"]
-! Channel tab - community
-!www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Community))
-!www.youtube.com##yt-tab-shape[tab-title="Community"]
-! Channel tab - channels
-www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Channels))
-www.youtube.com##yt-tab-shape[tab-title="Channels"]
-! Channel about - about > links
-www.youtube.com###links-container.ytd-channel-about-metadata-renderer
-! Channel misc - channel member prompt popup
-www.youtube.com##yt-bubble-hint-renderer > .yt-bubble-hint-renderer:has(.yt-formatted-string:has-text(Memebership))
+! Subscriptions Page - Shorts
+www.youtube.com##ytd-reel-shelf-renderer
+www.youtube.com##ytd-reel-item-renderer
 
 ! Video Player - mute button
 www.youtube.com##.ytp-volume-area
@@ -132,34 +74,23 @@ www.youtube.com##.ytp-button.ytp-remote-button
 
 ! Video Overlay - fast forward icon
 www.youtube.com##.ytp-doubletap-ui-legacy
-! Video Overlay - info card
-www.youtube.com##.ytp-cards-button-icon
-www.youtube.com##.ytp-cards-button
 ! Video Overlay - annotations
-www.youtube.com##.ytp-ce-element
+youtube.com##.ytp-ce-element
 ! Video Overlay - watermark
 www.youtube.com##.iv-branding
-! Video Overlay - hide endscreen feed
-www.youtube.com##.ytp-show-tiles.videowall-endscreen.ytp-player-content.html5-endscreen
-! Video Overlay - endscreen
+! Video Overlay - endscreen popup
 ||www.youtube.com/s/player/*/player_ias.vflset/*/endscreen.js^$script
-! Video Overlay - recommendation pause overlay (seen in /embed/)
-www.youtube.com##.ytp-pause-overlay
-! Video Overlay - ambient mode
-www.youtube.com###player>#cinematics.ytd-watch-flexy
-www.youtube.com###player>#cinematics-container
-! Video Overlay - cultural moment (#46)
-www.youtube.com##.ytp-cultural-moment-overlay
-
-! Video Setting - enhanced bitrate selector
-www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+! Video Overlay - endscreen feed
+www.youtube.com##.ytp-show-tiles.videowall-endscreen.ytp-player-content.html5-endscreen
 
 ! Video Metadata - rolling/animated views, likes
-!||www.youtube.com/s/desktop/*/jsbin/web-animations-next-lite.min.vflset/web-animations-next-lite.min.js$script,domain=youtube.com
-!||www.youtube.com/s/desktop/*/jsbin/scheduler.vflset/scheduler.js$script,domain=youtube.com
-!||www.youtube.com/youtubei/v1/updated_metadata$domain=youtube.com
+||www.youtube.com/s/desktop/*/jsbin/web-animations-next-lite.min.vflset/web-animations-next-lite.min.js$script,domain=youtube.com
+||www.youtube.com/s/desktop/*/jsbin/scheduler.vflset/scheduler.js$script,domain=youtube.com
+||www.youtube.com/youtubei/v1/updated_metadata$domain=youtube.com
 ! Video Metadata - clarify / covid-19 box
 www.youtube.com###clarify-box
+! Video Metadata - join button
+www.youtube.com###sponsor-button
 ! Video Metadata - subscribe (hides when already subscribed)
 www.youtube.com##yt-animated-action
 ! Video Metadata - subscribe smartimation
@@ -191,6 +122,11 @@ www.youtube.com##ytd-menu-service-item-renderer:has(>tp-yt-paper-item:has(>yt-fo
 !www.youtube.com##tp-yt-paper-item:has(yt-icon):has(yt-formatted-string:has-text(Save))
 !www.youtube.com##yt-button-view-model:has(>button-view-model> button[aria-label=Save])
 
+! Video Setting - enhanced bitrate selector
+www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+
+! Video Description - supertitle
+www.youtube.com###info-container > #info > a.yt-simple-endpoint[style-target="bold"]
 ! Video Description - fundraiser tag
 www.youtube.com##ytd-badge-supported-renderer:has(.badge-style-type-ypc):remove()
 ! Video Description - buy product badge
@@ -201,36 +137,80 @@ www.youtube.com##+js(aeld, yt-text-inline-expander-collapse-clicked)
 www.youtube.com##ytd-merch-shelf-renderer.ytd-watch-flexy.style-scope
 ! Video Description - remove hashtags
 www.youtube.com##a[href^="/hashtag/"]
+! Video Description - Metadata
+www.youtube.com##.ytd-rich-metadata-row-renderer
 ! Video Description - large channel infocard (#35)
 www.youtube.com##ytd-video-description-infocards-section-renderer>a#header[href^="/@"]
 www.youtube.com##ytd-video-description-infocards-section-renderer>#action-buttons
 
+! Comments - Hide Profile Pictures
+www.youtube.com###body > #author-thumbnail
+! Comments - channel member comment badge
+!www.youtube.com##span#sponsor-comment-badge
+! Comments - paid (thanks) comment badge
+!www.youtube.com###paid-comment-chip
+! Comments - paid (thanks) comment highlight
+!www.youtube.com##ytd-comment-renderer#comment:style(--ytd-comment-paid-background-color: transparent !important;)
+
+! Video Sidebar - "Chat Replay is disabled for this Premiere."
+www.youtube.com###chat-container
+
+! Channel - channel banner
+www.youtube.com##.banner-visible-area
+www.youtube.com##.page-header-banner
+! Channel - links
+www.youtube.com###channel-header > #links-holder
+www.youtube.com###channel-header-links
+! Channel Shelve - recognized channel member
+www.youtube.com##.ytd-recognition-shelf-renderer
+! Channel Shelve - members only videos
+www.youtube.com##ytd-shelf-renderer:has(.badge-style-type-members-only)
+! Channel Shelve - channel scroller
+www.youtube.com##ytd-shelf-renderer:has(ytd-grid-channel-renderer)
+! Channel header/homepage - channel handle
+www.youtube.com###meta>p:has(>#channel-handle)
+www.youtube.com##.meta-item:has(>#channel-handle)
+! Channel tab - shorts
+www.youtube.com##[tab-title="Shorts"]
+! Channel tab - channel store
+www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Store))
+www.youtube.com##yt-tab-shape[tab-title="Store"]
+! Channel tab - channels
+www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Channels))
+www.youtube.com##yt-tab-shape[tab-title="Channels"]
+! Channel about - about > links
+www.youtube.com###links-container.ytd-channel-about-metadata-renderer
+! Channel misc - channel member prompt popup
+www.youtube.com##yt-bubble-hint-renderer > .yt-bubble-hint-renderer:has(.yt-formatted-string:has-text(Memebership))
+! Channel Shelve - featured channels
+www.youtube.com##ytd-shelf-renderer:has(ytd-channel-renderer):has(.grid-subheader:not(:has(>#title-container[hidden])))
+
 !! under description metadata box
 ! ticket shelf
-www.youtube.com###ticket-shelf
+!www.youtube.com###ticket-shelf
 ! topic (kids/gaming)
-www.youtube.com##.ytd-rich-metadata-row-renderer[component-style=RICH_METADATA_RENDERER_STYLE_TOPIC]
+!www.youtube.com##.ytd-rich-metadata-row-renderer[component-style=RICH_METADATA_RENDERER_STYLE_TOPIC]
 ! box art (game being played)
-www.youtube.com##.ytd-rich-metadata-row-renderer[component-style=RICH_METADATA_RENDERER_STYLE_BOX_ART]
+!www.youtube.com##.ytd-rich-metadata-row-renderer[component-style=RICH_METADATA_RENDERER_STYLE_BOX_ART]
 ! show metadata
-www.youtube.com###collapsible > .ytd-metadata-row-container-renderer
+!www.youtube.com###collapsible > .ytd-metadata-row-container-renderer
 ! featured music
-www.youtube.com##ytd-video-description-music-section-renderer
-www.youtube.com##div[slot="extra-content"]:has(button-view-model>a[href="/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ"])
+!www.youtube.com##ytd-video-description-music-section-renderer
+!www.youtube.com##div[slot="extra-content"]:has(button-view-model>a[href="/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ"])
 ! featured playlist #37
-www.youtube.com##ytd-video-description-course-section-renderer
+!www.youtube.com##ytd-video-description-course-section-renderer
 ! products in current video
-www.youtube.com##ytd-metadata-row-container-renderer:has(ytd-rich-metadata-renderer[component-style="RICH_METADATA_RENDERER_STYLE_SQUARE"])
+!www.youtube.com##ytd-metadata-row-container-renderer:has(ytd-rich-metadata-renderer[component-style="RICH_METADATA_RENDERER_STYLE_SQUARE"])
 ! suggested channels
-www.youtube.com##ytd-metadata-row-renderer:has(yt-formatted-string[has-link-only_] > a[href^="/channel/"])
+!www.youtube.com##ytd-metadata-row-renderer:has(yt-formatted-string[has-link-only_] > a[href^="/channel/"])
 ! suggested videos
-youtube.com##ytd-metadata-row-renderer:has(yt-formatted-string[has-link-only_] > a[href^="/watch"])
+!youtube.com##ytd-metadata-row-renderer:has(yt-formatted-string[has-link-only_] > a[href^="/watch"])
 ! age restricted notice
-www.youtube.com##ytd-metadata-row-renderer:has(a[href="http://www.youtube.com/t/community_guidelines"])
+!www.youtube.com##ytd-metadata-row-renderer:has(a[href="http://www.youtube.com/t/community_guidelines"])
 ! featured places
-www.youtube.com##ytd-horizontal-card-list-renderer:has(ytd-place-data-view-model)
+!www.youtube.com##ytd-horizontal-card-list-renderer:has(ytd-place-data-view-model)
 ! show transcript button
-www.youtube.com##ytd-video-description-transcript-section-renderer
+!www.youtube.com##ytd-video-description-transcript-section-renderer
 
 ! Surveys - answer card/thanks
 www.youtube.com##yt-survey-answer-card-renderer
@@ -258,89 +238,81 @@ www.youtube.com##ytd-red-cancel-survey-renderer
 www.youtube.com##ytd-single-option-survey-renderer
 www.youtube.com##.ytd-single-option-survey-renderer
 
-! Popups - choose what to play next (#12)
-www.youtube.com##yt-tooltip-renderer[slot="dropdown-content"]
-! Popups - "Become a member of this channel"
-www.youtube.com##tp-yt-paper-dialog:has(yt-mealbar-promo-renderer)
-! Popups - generic survey
-www.youtube.com###survey
-! Popups - "feedback shared" / "experiencing interruptions" toasts
-www.youtube.com##tp-yt-paper-toast#toast
-! Popups - "change your subtitle settings" popup
-www.youtube.com##.ytp-promotooltip-wrapper
-! Popups - popup z-index fix
-www.youtube.com##tp-yt-iron-overlay-backdrop.opened
 
 !! profile row
-! member/join button
-www.youtube.com###sponsor-button
 ! free trial/ TV subscription
-www.youtube.com###purchase-button
+!www.youtube.com###purchase-button
 ! channel name tooltip
-www.youtube.com##ytd-channel-name>.ytd-channel-name>tp-yt-paper-tooltip.ytd-channel-name
-
-!! comments
-! channel member comment badge
-www.youtube.com##span#sponsor-comment-badge
-! paid (thanks) comment badge
-www.youtube.com###paid-comment-chip
-! paid (thanks) comment highlight
-www.youtube.com##ytd-comment-renderer#comment:style(--ytd-comment-paid-background-color: transparent !important;)
+!www.youtube.com##ytd-channel-name>.ytd-channel-name>tp-yt-paper-tooltip.ytd-channel-name
 
 !! video sidebar
 ! fundraiser
-www.youtube.com###donation-shelf
+!www.youtube.com###donation-shelf
 ! ads
-www.youtube.com##ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-ads"]
+!www.youtube.com##ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-ads"]
 ! shelves in watch-next recommendations (shorts shelf)
-www.youtube.com##ytd-watch-next-secondary-results-renderer ytd-shelf-renderer
+!www.youtube.com##ytd-watch-next-secondary-results-renderer ytd-shelf-renderer
 ! shop products in this video
-www.youtube.com##ytd-engagement-panel-section-list-renderer[target-id^="shopping_panel_for_entry_point"]
+!www.youtube.com##ytd-engagement-panel-section-list-renderer[target-id^="shopping_panel_for_entry_point"]
 
 !! recommendations sidebar
 ! recommendations categories
 !www.youtube.com##yt-chip-cloud-renderer
 ! mixes
-www.youtube.com##.ytd-compact-radio-renderer
+!www.youtube.com##.ytd-compact-radio-renderer
 ! movie suggestions
-www.youtube.com##ytd-compact-movie-renderer
+!www.youtube.com##ytd-compact-movie-renderer
 ! yt music
-www.youtube.com##ytd-compact-playlist-renderer .ytd-channel-name:has-text(/^YouTube/):upward(ytd-compact-playlist-renderer)
+!www.youtube.com##ytd-compact-playlist-renderer .ytd-channel-name:has-text(/^YouTube/):upward(ytd-compact-playlist-renderer)
 ! new/ fundraiser/ 4k badges
-www.youtube.com##.badge:has(>:has-text(Fundraiser))
-www.youtube.com##.badge:has(>:has-text(New))
-www.youtube.com##.badge:has(>:has-text(4K))
+!www.youtube.com##.badge:has(>:has-text(Fundraiser))
+!www.youtube.com##.badge:has(>:has-text(New))
+!www.youtube.com##.badge:has(>:has-text(4K))
 ! nudges (recommendation/ turn on watch history)
 !www.youtube.com##ytd-feed-nudge-renderer
 ! watch on youtube
-www.youtube.com##ytd-tvfilm-offer-module-renderer
+!www.youtube.com##ytd-tvfilm-offer-module-renderer
+
+
+! Popups - choose what to play next (#12)
+!www.youtube.com##yt-tooltip-renderer[slot="dropdown-content"]
+! Popups - "Become a member of this channel"
+!www.youtube.com##tp-yt-paper-dialog:has(yt-mealbar-promo-renderer)
+! Popups - generic survey
+!www.youtube.com###survey
+! Popups - "feedback shared" / "experiencing interruptions" toasts
+!www.youtube.com##tp-yt-paper-toast#toast
+! Popups - "change your subtitle settings" popup
+!www.youtube.com##.ytp-promotooltip-wrapper
+! Popups - popup z-index fix
+!www.youtube.com##tp-yt-iron-overlay-backdrop.opened
 
 !!! live chat
 ! chat window
-www.youtube.com###chat
+!www.youtube.com###chat
 ! superchat/member ticker
-www.youtube.com###ticker
+!www.youtube.com###ticker
 ! superchat/ donate button
-www.youtube.com###product-picker
+!www.youtube.com###product-picker
 ! superchats
-www.youtube.com##yt-live-chat-paid-message-renderer
+!www.youtube.com##yt-live-chat-paid-message-renderer
 ! memberships
-www.youtube.com##yt-live-chat-membership-item-renderer
+!www.youtube.com##yt-live-chat-membership-item-renderer
 ! paid badges
-www.youtube.com##yt-live-chat-paid-sticker-renderer
+!www.youtube.com##yt-live-chat-paid-sticker-renderer
 ! chat member badge
-www.youtube.com##yt-live-chat-author-badge-renderer[type=member]
+!www.youtube.com##yt-live-chat-author-badge-renderer[type=member]
 ! revert member color
-www.youtube.com###author-name.member:style(color: var(--yt-live-chat-secondary-text-color, rgba(255,255,255,0.7)) !important)
+!www.youtube.com###author-name.member:style(color: var(--yt-live-chat-secondary-text-color, rgba(255,255,255,0.7)) !important)
 ! custom emojis
-www.youtube.com##.emoji[data-emoji-id]
+!www.youtube.com##.emoji[data-emoji-id]
 ! emoji-only messages
-www.youtube.com##yt-live-chat-text-message-renderer:not(:has(#message:min-text-length(1)))
+!www.youtube.com##yt-live-chat-text-message-renderer:not(:has(#message:min-text-length(1)))
+! premiere chat - hide "chat replay is disabled"
+!www.youtube.com##ytd-live-chat-frame:has(> ytd-message-renderer)
 
-!! premiere chat
-! hide "chat replay is disabled"
-www.youtube.com##ytd-live-chat-frame:has(> ytd-message-renderer)
-
-! 2024-01-15 https://www.youtube.com
-www.youtube.com###author-thumbnail > .ytd-comment-renderer.style-scope.yt-simple-endpoint
+*$script,1p,domain=freeoseocheck.com|coinsvalue.net|cookinguide.net|cryptowidgets.net|insurancegold.in|greenenez.com|coinscap.info|wiki-topia.com|webfreetools.net|carstopia.net|makeupguide.net|carsmania.net
+*$script,redirect-rule=noopjs,domain=awgrow.com|fadedfeet.com|kenzo-flowertag.com|homeculina.com|ineedskin.com|mdn.lol|worldtanr.xyz|lawyex.co|yexolo.net
+/uko.php$domain=earnhub.net
+/*.php$document,script,important,domain=freeoseocheck.com|coinsvalue.net|cookinguide.net|cryptowidgets.net|insurancegold.in|greenenez.com|coinscap.info|wiki-topia.com|webfreetools.net|carstopia.net|makeupguide.net|carsmania.net
 

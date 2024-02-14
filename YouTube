@@ -40,17 +40,17 @@ www.youtube.com##.ytd-guide-entry-renderer[title="Send feedback"]
 ! Sidebar - footer section (primary links, secondary links, & copyright)
 www.youtube.com##ytd-guide-renderer #footer
 
+! Homepage - Shorts button (in chip renderer)
+www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
 ! Homepage - distractions
 www.youtube.com##ytd-rich-shelf-renderer
 
-! Search - Shorts button (in chip renderer)
-www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
-! Search - keep videos (without shorts) and channels
-www.youtube.com##ytd-search ytd-item-section-renderer>#contents>:not(ytd-video-renderer,ytd-channel-renderer),ytd-secondary-search-container-renderer,ytd-video-renderer:has([overlay-style="SHORTS"])
-! Search - channel handle
+! Search - keep videos (no shorts), channels, and playlists
+www.youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer, ytd-playlist-renderer),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+! Search - channel handle and description
 www.youtube.com##:matches-path(/results) #info > .ytd-channel-renderer.style-scope > #subscribers, #dot, #description
-! Search - metadata
-www.youtube.com##.ytd-video-renderer.style-scope.text-wrapper > .metadata-snippet-container, .metadata-snippet-container-one-line, #badges
+! Search - video metadata
+!www.youtube.com##.ytd-video-renderer.style-scope.text-wrapper > .metadata-snippet-container, .metadata-snippet-container-one-line, #badges
 
 ! Subscriptions Page - shorts
 www.youtube.com##ytd-reel-shelf-renderer
@@ -93,7 +93,8 @@ www.youtube.com###sponsor-button
 ! Video Metadata - subscribe button (if already subscribed)
 www.youtube.com##yt-animated-action
 ! Video Metadata - subscribe smartimation
-www.youtube.com##.smartimation__border
+www.youtube.com##yt-smartimation > *:not(.smartimation__content)
+!www.youtube.com##.smartimation__border
 ! Video Metadata - like/dislike ratio (return YouTube dislikes)
 www.youtube.com##.ryd-tooltip-new-design.ryd-tooltip
 ! Video Metadata - share button
@@ -118,7 +119,12 @@ youtube.com##yt-button-view-model:has(>button-view-model> button[aria-label=Clip
 www.youtube.com##ytd-menu-service-item-renderer:has(>tp-yt-paper-item:has(>yt-formatted-string:has-text(Clip)))
 
 ! Video Settings - enhanced bitrate selector
+!#if env_firefox
+www.youtube.com##.ytp-quality-menu .ytp-premium-label:upward(.ytp-menuitem)
+!#endif
+!#if env_chromium
 www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+!#endif
 
 ! Video Description - supertitle
 !www.youtube.com###info-container > #info > a.yt-simple-endpoint[style-target="bold"]
@@ -141,6 +147,9 @@ www.youtube.com##ytd-video-description-infocards-section-renderer
 
 ! Comment Section - profile pictures
 www.youtube.com###body > #author-thumbnail
+
+! Recommendation Sidebar - badges (such as "New")
+www.youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
 
 ! Channel Page - banner
 www.youtube.com##.banner-visible-area

@@ -2,9 +2,9 @@
 www.youtube.com##ytd-topbar-logo-renderer>#country-code
 ! Header - block yoodle image/animations from being fetched (falls back to normal logo)
 ||www.gstatic.com/youtube/img/promos/*$image
-! Header - block child elements of yoodle
+! Header - child elements of yoodle
 www.youtube.com##.ytd-yoodle-renderer
-! Header - Search Predictions
+! Header - search predictions
 ||youtube.com/complete/search
 ! Header - voice search button
 www.youtube.com###voice-search-button
@@ -12,10 +12,10 @@ www.youtube.com###voice-search-button
 ||www.youtube.com/s/search/audio/*.mp3$media
 ! Header - create button
 www.youtube.com##.style-default.ytd-masthead.style-scope
-! Header - alerts notification icon
-www.youtube.com##.yt-spec-icon-badge-shape__badge
 ! Header - alerts button
 !www.youtube.com##ytd-notification-topbar-button-renderer
+! Header - alerts button badge
+www.youtube.com##.yt-spec-icon-badge-shape__badge
 
 ! Sidebar - Shorts button
 www.youtube.com##.ytd-guide-entry-renderer[title="Shorts"], .ytd-mini-guide-entry-renderer[title="Shorts"]
@@ -33,32 +33,34 @@ www.youtube.com##ytd-guide-signin-promo-renderer
 www.youtube.com###newness-dot
 ! Sidebar - Explore section
 www.youtube.com##ytd-guide-section-renderer:has(#guide-section-title:has-text(Explore))
-! Sidebar - More from youtube section
+! Sidebar - More from YouTube section
 www.youtube.com##ytd-guide-section-renderer:has(#guide-section-title:has-text(More from YouTube))
 ! Sidebar - Send Feedback button
 www.youtube.com##.ytd-guide-entry-renderer[title="Send feedback"]
-! Sidebar - Footer Section (primary links, secondary links, & copyright)
+! Sidebar - footer section (primary links, secondary links, & copyright)
 www.youtube.com##ytd-guide-renderer #footer
 
 ! Homepage - distractions
 www.youtube.com##ytd-rich-shelf-renderer
 
-! Search - shorts button in chip renderer
+! Search - Shorts button (in chip renderer)
 www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
 ! Search - keep videos (without shorts) and channels
 www.youtube.com##ytd-search ytd-item-section-renderer>#contents>:not(ytd-video-renderer,ytd-channel-renderer),ytd-secondary-search-container-renderer,ytd-video-renderer:has([overlay-style="SHORTS"])
-! Search - channel description
-www.youtube.com##:matches-path(/results) .ytd-channel-renderer#description
+! Search - channel handle
+www.youtube.com##:matches-path(/results) #info > .ytd-channel-renderer.style-scope > #subscribers, #dot, #description
+! Search - metadata
+www.youtube.com##.ytd-video-renderer.style-scope.text-wrapper > .metadata-snippet-container, .metadata-snippet-container-one-line, #badges
 
-! Subscriptions Page - Shorts
+! Subscriptions Page - shorts
 www.youtube.com##ytd-reel-shelf-renderer
 www.youtube.com##ytd-reel-item-renderer
 
-! Video Player - mute button
+! Video Player - volume area
 www.youtube.com##.ytp-volume-area
 ! Video Player - time display
 www.youtube.com##.ytp-time-display
-! Video Player - autoplay toggle-button
+! Video Player - autoplay toggle
 www.youtube.com##button.ytp-button[data-tooltip-target-id=ytp-autonav-toggle-button]
 ! Video Player - subtitles button
 www.youtube.com##.ytp-button.ytp-subtitles-button
@@ -69,13 +71,13 @@ www.youtube.com##.ytp-button.ytp-size-button
 ! Video Player - Play on TV button
 www.youtube.com##.ytp-button.ytp-remote-button
 
-! Video Overlay - fast forward icon
+! Video Overlay - fast-forward icon
 www.youtube.com##.ytp-doubletap-ui-legacy
 ! Video Overlay - annotations
 youtube.com##.ytp-ce-element
 ! Video Overlay - watermark
 www.youtube.com##.iv-branding
-! Video Overlay - endscreen popup
+! Video Overlay - endscreen cards
 ||www.youtube.com/s/player/*/player_ias.vflset/*/endscreen.js^$script
 ! Video Overlay - endscreen feed
 www.youtube.com##.ytp-show-tiles.videowall-endscreen.ytp-player-content.html5-endscreen
@@ -84,15 +86,15 @@ www.youtube.com##.ytp-show-tiles.videowall-endscreen.ytp-player-content.html5-en
 ||www.youtube.com/s/desktop/*/jsbin/web-animations-next-lite.min.vflset/web-animations-next-lite.min.js$script,domain=youtube.com
 ||www.youtube.com/s/desktop/*/jsbin/scheduler.vflset/scheduler.js$script,domain=youtube.com
 ||www.youtube.com/youtubei/v1/updated_metadata$domain=youtube.com
-! Video Metadata - clarify / covid-19 box
+! Video Metadata - covid-19 alert
 www.youtube.com###clarify-box
 ! Video Metadata - join button
 www.youtube.com###sponsor-button
-! Video Metadata - subscribe (hides when already subscribed)
+! Video Metadata - subscribe button (if already subscribed)
 www.youtube.com##yt-animated-action
 ! Video Metadata - subscribe smartimation
 www.youtube.com##.smartimation__border
-! Video Metadata - like/dislike ratio bar
+! Video Metadata - like/dislike ratio (return YouTube dislikes)
 www.youtube.com##.ryd-tooltip-new-design.ryd-tooltip
 ! Video Metadata - share button
 www.youtube.com##ytd-button-renderer:has(>a:has(> yt-formatted-string:has-text(Share)))
@@ -115,83 +117,47 @@ youtube.com##yt-button-view-model:has(>button-view-model> button[aria-label=Clip
 ! Video Metadata - clip overflow menu
 www.youtube.com##ytd-menu-service-item-renderer:has(>tp-yt-paper-item:has(>yt-formatted-string:has-text(Clip)))
 
-! Video Setting - enhanced bitrate selector
+! Video Settings - enhanced bitrate selector
 www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
 
 ! Video Description - supertitle
-www.youtube.com###info-container > #info > a.yt-simple-endpoint[style-target="bold"]
+!www.youtube.com###info-container > #info > a.yt-simple-endpoint[style-target="bold"]
 ! Video Description - fundraiser tag
 www.youtube.com##ytd-badge-supported-renderer:has(.badge-style-type-ypc):remove()
 ! Video Description - buy product badge
 www.youtube.com##.ytp-suggested-action-badge
 ! Video Description - stop scrolling on "show less" (ubo only)
 www.youtube.com##+js(aeld, yt-text-inline-expander-collapse-clicked)
-! Video Description - merch shelf
+! Video Description - merch
 www.youtube.com##ytd-merch-shelf-renderer.ytd-watch-flexy.style-scope
-! Video Description - remove hashtags
+! Video Description - hashtags
 www.youtube.com##a[href^="/hashtag/"]
-! Video Description - Metadata
+! Video Description - metadata
 www.youtube.com##.ytd-rich-metadata-row-renderer
-! Video Description - large channel infocard (#35)
-www.youtube.com##ytd-video-description-infocards-section-renderer>a#header[href^="/@"]
-www.youtube.com##ytd-video-description-infocards-section-renderer>#action-buttons
+! Video Description - ticket shelf
+www.youtube.com###ticket-shelf
+! Video Description - large channel infocard
+www.youtube.com##ytd-video-description-infocards-section-renderer
 
-! Comments - Hide Profile Pictures
+! Comment Section - profile pictures
 www.youtube.com###body > #author-thumbnail
 
-! Channel - channel banner
+! Channel Page - banner
 www.youtube.com##.banner-visible-area
 www.youtube.com##.page-header-banner
-! Channel - links
+! Channel Page - links
 www.youtube.com###channel-header > #links-holder
 www.youtube.com###channel-header-links
-! Channel Shelve - recognized channel member
-www.youtube.com##.ytd-recognition-shelf-renderer
-! Channel Shelve - members only videos
-www.youtube.com##ytd-shelf-renderer:has(.badge-style-type-members-only)
-! Channel header/homepage - channel handle
-www.youtube.com###meta>p:has(>#channel-handle)
+! Channel Page - handle
 www.youtube.com##.meta-item:has(>#channel-handle)
-! Channel tab - shorts
-www.youtube.com##[tab-title="Shorts"]
-! Channel tab - channel store
+! Channel Page - shorts tab
+www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Shorts))
+www.youtube.com##yt-tab-shape[tab-title="Shorts"]
+! Channel Page - store tab
 www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Store))
 www.youtube.com##yt-tab-shape[tab-title="Store"]
-! Channel tab - channels
-www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Channels))
-www.youtube.com##yt-tab-shape[tab-title="Channels"]
-! Channel about - about > links
-www.youtube.com###links-container.ytd-channel-about-metadata-renderer
-! Channel misc - channel member prompt popup
-www.youtube.com##yt-bubble-hint-renderer > .yt-bubble-hint-renderer:has(.yt-formatted-string:has-text(Memebership))
-! Channel Shelve - featured channels
+! Channel Page - featured channels shelve
 www.youtube.com##ytd-shelf-renderer:has(ytd-channel-renderer):has(.grid-subheader:not(:has(>#title-container[hidden])))
-
-! Surveys - answer card/thanks
-www.youtube.com##yt-survey-answer-card-renderer
-! Surveys - checkbox survey?
-www.youtube.com##.ytd-checkbox-survey-renderer
-! Surveys - feedback survey?
-www.youtube.com##ytd-feedback-survey-renderer
-www.youtube.com##.ytd-feedback-survey-renderer
-! Surveys - follow up survey?
-www.youtube.com##.ytd-survey-follow-up-renderer
-www.youtube.com##ytd-survey-follow-up-renderer
-! Surveys - generic surveys
-www.youtube.com##ytd-inline-survey-renderer
-www.youtube.com##.ytd-inline-survey-renderer
-! Surveys - multistage survey?
-www.youtube.com##.ytd-multi-stage-survey-renderer
-www.youtube.com##ytd-multi-stage-survey-renderer
-! Surveys - ratings survey? 
-www.youtube.com##ytd-rating-survey-renderer
-www.youtube.com##.ytd-rating-survey-renderer
-! Surveys - RED exit survey
-www.youtube.com##.ytd-red-cancel-survey-renderer
-www.youtube.com##ytd-red-cancel-survey-renderer
-! Surveys - "how are your recommendations" survey
-www.youtube.com##ytd-single-option-survey-renderer
-www.youtube.com##.ytd-single-option-survey-renderer
 
 ! Popups - Fade in Animation (text that fades in when you hover over buttons)
 www.youtube.com##.fade-in-animation

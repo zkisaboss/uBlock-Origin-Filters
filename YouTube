@@ -11,7 +11,7 @@ www.youtube.com###voice-search-button
 ! Header - voice search response noises
 ||www.youtube.com/s/search/audio/*.mp3$media
 ! Header - create button
-www.youtube.com##.style-default.ytd-masthead.style-scope
+youtube.com###buttons > ytd-topbar-menu-button-renderer.style-scope.ytd-masthead.style-default:first-child
 ! Header - alerts button
 !www.youtube.com##ytd-notification-topbar-button-renderer
 ! Header - alerts button badge
@@ -30,7 +30,7 @@ www.youtube.com##.ytd-guide-entry-renderer[href="/feed/clips"]
 ! Sidebar - Sign in section (if not logged in)
 www.youtube.com##ytd-guide-signin-promo-renderer
 ! Sidebar - newness subscriptions dot
-www.youtube.com###newness-dot
+www.youtube.com##.ytd-guide-entry-renderer > #newness-dot
 ! Sidebar - Explore section
 www.youtube.com##ytd-guide-section-renderer:has(#guide-section-title:has-text(Explore))
 ! Sidebar - More from YouTube section
@@ -38,41 +38,31 @@ www.youtube.com##ytd-guide-section-renderer:has(#guide-section-title:has-text(Mo
 ! Sidebar - Send Feedback button
 www.youtube.com##.ytd-guide-entry-renderer[title="Send feedback"]
 ! Sidebar - footer section (primary links, secondary links, & copyright)
-www.youtube.com##ytd-guide-renderer #footer
+www.youtube.com###guide-renderer > #footer
 
-! Homepage - Shorts button (in chip renderer)
+! Homepage - Shorts button (chip renderer)
 www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
 ! Homepage - distractions
 www.youtube.com##ytd-rich-shelf-renderer
 
 ! Search - keep videos (no shorts), channels, and playlists
 www.youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer, ytd-playlist-renderer),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
-! Search - channel handle and description
-www.youtube.com##:matches-path(/results) #info > .ytd-channel-renderer.style-scope > #subscribers, #dot, #description
 ! Search - video metadata
-!www.youtube.com##.ytd-video-renderer.style-scope.text-wrapper > .metadata-snippet-container, .metadata-snippet-container-one-line, #badges
+www.youtube.com##.ytd-video-renderer > .metadata-snippet-container, .metadata-snippet-container-one-line, #badges
+! Search - channel handle and description
+www.youtube.com##.ytd-channel-renderer > #subscribers, #dot, #description
 
 ! Subscriptions Page - shorts
 www.youtube.com##ytd-reel-shelf-renderer
 www.youtube.com##ytd-reel-item-renderer
 
-! Video Player - volume area
-www.youtube.com##.ytp-volume-area
-! Video Player - time display
-www.youtube.com##.ytp-time-display
-! Video Player - autoplay toggle
-www.youtube.com##button.ytp-button[data-tooltip-target-id=ytp-autonav-toggle-button]
-! Video Player - subtitles button
-www.youtube.com##.ytp-button.ytp-subtitles-button
-! Video Player - miniplayer button
-www.youtube.com##.ytp-button.ytp-miniplayer-button
-! Video Player - size button
-www.youtube.com##.ytp-button.ytp-size-button
-! Video Player - Play on TV button
-www.youtube.com##.ytp-button.ytp-remote-button
+! Video Player - volume area, time display, autoplay toggle, subtitles button, miniplayer button, size button, Play on TV button
+www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > :is(.ytp-left-controls, .ytp-right-controls) > :not(.ytp-play-button, .ytp-next-button, .ytp-settings-button, .ytp-fullscreen-button)
 
 ! Video Overlay - fast-forward icon
 www.youtube.com##.ytp-doubletap-ui-legacy
+! Video Overlay - sponsor popup
+www.youtube.com##.ytp-paid-content-overlay
 ! Video Overlay - annotations
 youtube.com##.ytp-ce-element
 ! Video Overlay - watermark
@@ -119,12 +109,7 @@ youtube.com##yt-button-view-model:has(>button-view-model> button[aria-label=Clip
 www.youtube.com##ytd-menu-service-item-renderer:has(>tp-yt-paper-item:has(>yt-formatted-string:has-text(Clip)))
 
 ! Video Settings - enhanced bitrate selector
-!#if env_firefox
-www.youtube.com##.ytp-quality-menu .ytp-premium-label:upward(.ytp-menuitem)
-!#endif
-!#if env_chromium
-www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
-!#endif
+youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
 
 ! Video Description - supertitle
 !www.youtube.com###info-container > #info > a.yt-simple-endpoint[style-target="bold"]

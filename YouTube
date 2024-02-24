@@ -1,5 +1,5 @@
 ! Header - country code
-www.youtube.com##ytd-topbar-logo-renderer>#country-code
+www.youtube.com##ytd-topbar-logo-renderer Z> #country-code
 ! Header - block yoodle image/animations from being fetched (falls back to normal logo)
 ||www.gstatic.com/youtube/img/promos/*$image
 ! Header - child elements of yoodle
@@ -48,9 +48,9 @@ www.youtube.com##ytd-rich-shelf-renderer
 ! Search - keep videos (no shorts), channels, and playlists
 www.youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer, ytd-playlist-renderer),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
 ! Search - video metadata
-www.youtube.com##.ytd-video-renderer > .metadata-snippet-container, .metadata-snippet-container-one-line, #badges
+www.youtube.com##.ytd-video-renderer.style-scope.text-wrapper > .metadata-snippet-container, .metadata-snippet-container-one-line, #badges
 ! Search - channel handle and description
-www.youtube.com##.ytd-channel-renderer > #subscribers, #dot, #description
+www.youtube.com##:matches-path(/results) #info > .ytd-channel-renderer.style-scope > #subscribers, #dot, #description
 
 ! Subscriptions Page - shorts
 www.youtube.com##ytd-reel-shelf-renderer

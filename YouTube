@@ -1,3 +1,41 @@
+! Network - remove offline service worker
+||www.youtube.com/sw.js$script
+! Network - disable installable progressive web app functionality
+||www.youtube.com/manifest.webmanifest
+
+! Tracking - playback ping
+||www.youtube.com/api/stats/playback?$empty
+! Tracking - watch % and time
+||www.youtube.com/api/stats/watchtime?$empty
+! Tracking - periodic stat pings
+||www.youtube.com/youtubei/v1/log_event?$empty
+! Tracking - generic stats ping
+||www.youtube.com/generate_204
+/generate_204$~xhr
+||www.youtube.com/youtubei/v1/att/get
+
+! Hide horizontal scrollbar. This is only shown on Firefox (version 86 and above)
+! https://github.com/yokoffing/filterlists/pull/109
+! https://github.com/yokoffing/filterlists/pull/112
+!#if env_firefox
+www.youtube.com##ytd-app:style(--ytd-app-fullerscreen-scrollbar-width: -1px !important;)
+!#endif
+
+! Chromecast
+!#if env_chromium
+! Chromecast - cast_sender module
+||www.gstatic.com/*/cast_sender.js$script
+! Chromecast - cast_sender backups
+||www.youtube.com/s/desktop/*/jsbin/www-tampering.vflset/www-tampering.js$script
+! Chromecast - mobile remote
+||www.youtube.com/s/player/*/player_ias.vflset/*/remote.js$script
+!#endif
+
+! Alternative Players - enable all miniplayer features
+||www.youtube.com/s/player/*/player_ias.vflset/*/miniplayer.js$script
+! Alternative Players - enable all inline player features
+||www.youtube.com/s/player/*/player_ias.vflset/*/inline_preview.js$script
+
 ! Header - yoodle image/animations
 ||www.gstatic.com/youtube/img/promos/*$image
 ! Header - search predictions
@@ -22,6 +60,7 @@ www.youtube.com###guide-renderer > #footer
 www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
 ! Homepage - distractions
 www.youtube.com##ytd-rich-shelf-renderer
+! m.youtube.com##ytm-rich-section-renderer
 
 ! Search - keep videos and channels
 www.youtube.com##ytd-search ytd-item-section-renderer > #contents > :is(:not(ytd-video-renderer, ytd-channel-renderer), ytd-video-renderer:has([aria-label="Shorts"]))
@@ -51,7 +90,7 @@ www.youtube.com##.iv-branding
 ||www.youtube.com/s/player/*/player_ias.vflset/*/endscreen.js^$script
 
 ! Video Settings - enhanced bitrate selector
-youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
 
 ! Video Metadata - covid-19 alert
 www.youtube.com###clarify-box
@@ -63,7 +102,7 @@ www.youtube.com###sponsor-button
 www.youtube.com###top-row > #owner yt-animated-action
 ! Video Metadata - subscribe smartimation
 www.youtube.com##yt-smartimation > :not(.smartimation__content)
-! Video Metadata - rolling/animated views, likes
+! Video Metadata - animated views, likes
 ||www.youtube.com/youtubei/v1/updated_metadata$domain=youtube.com
 ! Video Metadata - share button, create button, download button, thanks button, clip button
 www.youtube.com###top-row yt-button-view-model:has(button:not([aria-label="Save to playlist"]))
@@ -74,27 +113,19 @@ www.youtube.com###top-row #menu > .ytd-watch-metadata > .top-level-buttons > div
 ! Video Metadata - info panel
 www.youtube.com###middle-row
 
-! Video Description - supertitle
-www.youtube.com###info-container > #info > a.yt-simple-endpoint[style-target="bold"]
-! Video Description - fundraiser tag
-www.youtube.com##ytd-badge-supported-renderer:has(.badge-style-type-ypc):remove()
-! Video Description - buy product badge
-www.youtube.com##.ytp-suggested-action-badge
+! Video Description - supertitle [style-target="bold"]
+www.youtube.com###info-container > #info > a.yt-simple-endpoint
 ! Video Description - stop scrolling on "show less" (ubo only)
 www.youtube.com##+js(aeld, yt-text-inline-expander-collapse-clicked)
-! Video Description - merch
-www.youtube.com##ytd-merch-shelf-renderer.ytd-watch-flexy
-! Video Description - hashtags
-www.youtube.com##a[href^="/hashtag/"]
-! Video Description - metadata
-www.youtube.com##.ytd-rich-metadata-row-renderer
-! Video Description - ticket shelf
-www.youtube.com###ticket-shelf
-! Video Description - large channel infocard
-www.youtube.com##ytd-video-description-infocards-section-renderer
+! Video Description - Junk
+www.youtube.com###description .ytd-watch-metadata #items
 
+! Comment Section - emoji button
+www.youtube.com###emoji-button
 ! Comment Section - profile pictures
 www.youtube.com###body > #author-thumbnail
+! Comment Section - emoji icons
+youtube.com##img.emoji
 
 ! Recommendation Sidebar - badges (such as "New")
 www.youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
@@ -102,26 +133,22 @@ www.youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
 www.youtube.com##ytd-thumbnail-overlay-time-status-renderer
 
 ! Channel Page - banner
-www.youtube.com##.banner-visible-area
 www.youtube.com##.page-header-banner
-! Channel Page - links
-www.youtube.com###channel-header > #links-holder
-www.youtube.com###channel-header-links
+www.youtube.com##.banner-visible-area
 ! Channel Page - handle
 www.youtube.com##.meta-item:has(>#channel-handle)
+! Channel Page - links
+www.youtube.com###channel-header-links
 ! Channel Page - shorts tab
-www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Shorts))
 www.youtube.com##yt-tab-shape[tab-title="Shorts"]
 ! Channel Page - community tab
-www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Community))
 www.youtube.com##yt-tab-shape[tab-title="Community"]
 ! Channel Page - store tab
-www.youtube.com##tp-yt-paper-tab:has(> .tab-content:has-text(Store))
 www.youtube.com##yt-tab-shape[tab-title="Store"]
 ! Channel Page - slider
 www.youtube.com##.yt-tab-group-shape-wiz__slider
 ! Channel Page - featured channels shelve
-www.youtube.com##ytd-shelf-renderer:has(ytd-channel-renderer):has(.grid-subheader:not(:has(#title-container[hidden])))
+! www.youtube.com##ytd-shelf-renderer:has(ytd-channel-renderer):has(.grid-subheader:not(:has(#title-container[hidden])))
 
 ! Popups - Fade in Animation (text that fades in when you hover over buttons)
 www.youtube.com##.fade-in-animation

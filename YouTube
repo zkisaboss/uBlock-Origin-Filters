@@ -1,49 +1,18 @@
-! Network - remove offline service worker
+! Network - offline service worker
 ||www.youtube.com/sw.js$script
-! Network - disable installable progressive web app functionality
-||www.youtube.com/manifest.webmanifest
-
-! Tracking - playback ping
-||www.youtube.com/api/stats/playback?$empty
-! Tracking - watch % and time
-||www.youtube.com/api/stats/watchtime?$empty
-! Tracking - periodic stat pings
-||www.youtube.com/youtubei/v1/log_event?$empty
-! Tracking - generic stats ping
-||www.youtube.com/generate_204
-/generate_204$~xhr
-||www.youtube.com/youtubei/v1/att/get
-
-! Hide horizontal scrollbar. This is only shown on Firefox (version 86 and above)
-! https://github.com/yokoffing/filterlists/pull/109
-! https://github.com/yokoffing/filterlists/pull/112
-!#if env_firefox
-!www.youtube.com##ytd-app:style(--ytd-app-fullerscreen-scrollbar-width: -1px !important;)
-!#endif
-
-! Chromecast
-!#if env_chromium
-! Chromecast - cast_sender module
-||www.gstatic.com/*/cast_sender.js$script
-! Chromecast - cast_sender backups
-||www.youtube.com/s/desktop/*/jsbin/www-tampering.vflset/www-tampering.js$script
-! Chromecast - mobile remote
-||www.youtube.com/s/player/*/player_ias.vflset/*/remote.js$script
-!#endif
-
-! Alternative Players - enable all miniplayer features
-!||www.youtube.com/s/player/*/player_ias.vflset/*/miniplayer.js$script
-! Alternative Players - enable all inline player features
-!||www.youtube.com/s/player/*/player_ias.vflset/*/inline_preview.js$script
 
 ! Header - yoodle image/animations
 ||www.gstatic.com/youtube/img/promos/*$image
 ! Header - search predictions
 ||youtube.com/complete/search
-! Header - voice search response noises
-! ||www.youtube.com/s/search/audio/*.mp3$media
 ! Header - voice search button, create button, alerts button badge
 www.youtube.com##ytd-masthead > #container :is(#voice-search-button, ytd-topbar-menu-button-renderer.style-default, .yt-spec-icon-badge-shape__badge)
+
+! Homepage - shorts button
+www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
+! Homepage - placeholders and distractions
+www.youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
+www.youtube.com##ytd-rich-grid-renderer > #contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
 
 ! Sidebar - sign in section (if not logged in)
 www.youtube.com##tp-yt-app-drawer ytd-guide-renderer > #sections > ytd-guide-signin-promo-renderer
@@ -56,14 +25,9 @@ www.youtube.com##.ytd-guide-entry-renderer:is([title="Shorts"], [title="You"], [
 www.youtube.com##.ytd-mini-guide-entry-renderer[title="Shorts"]
 ! Sidebar - footer section (primary links, secondary links, & copyright)
 www.youtube.com##tp-yt-app-drawer ytd-guide-renderer > #footer
-
-! Homepage - shorts button
-www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
-! Homepage - distractions
-www.youtube.com##ytd-rich-shelf-renderer
-! Homepage - placeholders
-www.youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
-www.youtube.com##ytd-rich-grid-renderer > #contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
+! Sidebar - expand show more
+youtube.com##+js(trusted-click-element, #sections #expander-item)
+youtube.com##ytd-guide-collapsible-section-entry-renderer #collapser-item
 
 ! Search - keep videos and channels
 www.youtube.com##ytd-search ytd-item-section-renderer > #contents > :is(:not(ytd-video-renderer, ytd-channel-renderer), ytd-video-renderer:has([aria-label="Shorts"]))
@@ -72,20 +36,16 @@ www.youtube.com##ytd-search ytd-item-section-renderer ytd-video-renderer .text-w
 ! Search - channel handle, channel description
 www.youtube.com##ytd-search ytd-item-section-renderer ytd-channel-renderer #info :is(#subscribers, #dot, #description)
 
-! Subscriptions Page - shorts
-www.youtube.com##ytd-reel-shelf-renderer
-www.youtube.com##ytd-reel-item-renderer
-
 ! Video Overlay - video title, watch later icon, share icon
 www.youtube.com###movie_player > .ytp-chrome-top
 ! Video Overlay - volume area, time display, autoplay toggle, subtitles button, miniplayer button, size button, play on tv button
 www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > :is(.ytp-left-controls, .ytp-right-controls) > :not(.ytp-play-button, .ytp-next-button, .ytp-settings-button, .ytp-fullscreen-button)
 ! Video Overlay - fast-forward icon
 www.youtube.com##.ytp-doubletap-ui-legacy
-! Video Overlay - product button
-www.youtube.com##.ytp-suggested-action
 ! Video Overlay - sponsor popup
 www.youtube.com##.ytp-paid-content-overlay
+! Video Overlay - product button
+www.youtube.com##.ytp-suggested-action
 ! Video Overlay - annotations
 /annotations_module.js$script,xhr,important,domain=youtube.com
 ! Video Overlay - endscreen
@@ -94,8 +54,10 @@ www.youtube.com##.ytp-paid-content-overlay
 ! Video Settings - enhanced bitrate selector
 www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
 
-! Video Metadata - covid-19 alert
+! Video Metadata - alert (covid-19, You're not alone)
 www.youtube.com###clarify-box
+! Video Metadata - DeArrow edit thumbnail button
+www.youtube.com##.cbTitleButtonContainer
 ! Video Metadata - join button
 www.youtube.com###sponsor-button
 ! Video Metadata - subscribe button (if already subscribed)
@@ -108,8 +70,12 @@ www.youtube.com##yt-smartimation > :not(.smartimation__content)
 www.youtube.com###top-row yt-button-view-model:has(button:not([aria-label="Save to playlist"]))
 ! Video Metadata - disabled buttons
 www.youtube.com###top-row #flexible-item-buttons:has(.yt-spec-button-shape-next--disabled)
+! Video Metadata - Return YouTube Dislike ratio bar
+www.youtube.com###top-row #menu > .ytd-watch-metadata > .top-level-buttons > div[class="ryd-tooltip ryd-tooltip-new-design"]
 ! Video Metadata - info panel
 www.youtube.com###middle-row
+! Video Metadata - notice
+www.youtube.com##ytd-metadata-row-container-renderer
 
 ! Video Description - supertitle
 www.youtube.com###info-container > #info > a.yt-simple-endpoint

@@ -11,8 +11,8 @@ www.youtube.com##ytd-masthead > #container :is(#voice-search-button, ytd-topbar-
 ! Homepage - shorts button
 www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
 ! Homepage - placeholders and distractions
-www.youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
-www.youtube.com##ytd-rich-grid-renderer > #contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
+! www.youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
+! www.youtube.com##ytd-rich-grid-renderer > #contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
 
 ! Sidebar - sign in section (if not logged in)
 www.youtube.com##tp-yt-app-drawer ytd-guide-renderer > #sections > ytd-guide-signin-promo-renderer
@@ -45,7 +45,7 @@ www.youtube.com##.ytp-doubletap-ui-legacy
 ! Video Overlay - sponsor popup
 www.youtube.com##.ytp-paid-content-overlay
 ! Video Overlay - product button
-www.youtube.com##.ytp-suggested-action
+! www.youtube.com##.ytp-suggested-action
 ! Video Overlay - annotations
 /annotations_module.js$script,xhr,important,domain=youtube.com
 ! Video Overlay - endscreen
@@ -76,6 +76,8 @@ www.youtube.com###top-row #menu > .ytd-watch-metadata > .top-level-buttons > div
 www.youtube.com###middle-row
 ! Video Metadata - notice
 www.youtube.com##ytd-metadata-row-container-renderer
+! Video Metadata - ticket shelf
+www.youtube.com###ticket-shelf
 
 ! Video Description - supertitle
 www.youtube.com###info-container > #info > a.yt-simple-endpoint
@@ -97,20 +99,35 @@ www.youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
 www.youtube.com##ytd-thumbnail-overlay-time-status-renderer
 
 ! Channel Page - banner
-www.youtube.com##.page-header-banner
-www.youtube.com##.banner-visible-area
-! Channel Page - handle
-www.youtube.com##span.meta-item:has(yt-formatted-string#channel-handle)
-! Channel Page - links
-www.youtube.com###channel-header-links
+www.youtube.com###page-header-banner
 ! Channel Page - shorts tab, community tab, store tab
 www.youtube.com##yt-tab-shape:is([tab-title="Shorts"], [tab-title="Community"], [tab-title="Store"])
 ! Channel Page - slider
 www.youtube.com##.yt-tab-group-shape-wiz__slider
-! Channel Page - featured channels shelve
-www.youtube.com##ytd-shelf-renderer:has(ytd-channel-renderer):has(.grid-subheader:not(:has(#title-container[hidden])))
 
 ! Popups - tooltips
 www.youtube.com##.fade-in-animation
 ! Popups - perfomance alert
 www.youtube.com###toast
+
+||aniwave.*/assets/_bnx/mangafire_7xx.gif
+||aniwave.*/assets/t1/s1/imagesv3/bg-footer.jpg
+||aniwave.*/assets/t1/s1/imagesv3/bg-schedule.png
+aniwave.to,aniwave.vc,aniwave.li###i-bottom
+aniwave.to,aniwave.vc,aniwave.li###hotest
+aniwave.to,aniwave.vc,aniwave.li##.mb-4
+aniwave.to,aniwave.vc,aniwave.li###continue-watching
+aniwave.to,aniwave.vc,aniwave.li##.top-tables
+aniwave.to,aniwave.vc,aniwave.li###schedule > .head > .title
+aniwave.to,aniwave.vc,aniwave.li###schedule > .head > .days > .prev
+aniwave.to,aniwave.vc,aniwave.li###schedule > .head > .days > .next
+aniwave.to,aniwave.vc,aniwave.li##footer
+aniwave.to,aniwave.vc,aniwave.li###w-info, #w-seasons, #watch-second
+aniwave.to,aniwave.vc,aniwave.li###quick-menu > :is([href], div)
+aniwave.to,aniwave.vc,aniwave.li###controls > :is(.left, .right) :not(.auto-play, .auto-skip, .prev, .next, .fa-solid)
+aniwave.to,aniwave.vc,aniwave.li##.next-episode
+aniwave.to,aniwave.vc,aniwave.li###search .tip
+
+! 2024-05-16 https://magma.com
+magma.com##modals-box.ng-tns-c1263415635-0
+

@@ -11,8 +11,8 @@ www.youtube.com##ytd-masthead > #container :is(#voice-search-button, ytd-topbar-
 ! Homepage - shorts button
 www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
 ! Homepage - placeholders and distractions
-! www.youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
-! www.youtube.com##ytd-rich-grid-renderer > #contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
+www.youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
+www.youtube.com##ytd-rich-grid-renderer > #contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
 
 ! Sidebar - sign in section (if not logged in)
 www.youtube.com##tp-yt-app-drawer ytd-guide-renderer > #sections > ytd-guide-signin-promo-renderer
@@ -25,14 +25,11 @@ www.youtube.com##.ytd-guide-entry-renderer:is([title="Shorts"], [title="You"], [
 www.youtube.com##.ytd-mini-guide-entry-renderer[title="Shorts"]
 ! Sidebar - footer section (primary links, secondary links, & copyright)
 www.youtube.com##tp-yt-app-drawer ytd-guide-renderer > #footer
-! Sidebar - expand show more
-youtube.com##+js(trusted-click-element, #sections #expander-item)
-youtube.com##ytd-guide-collapsible-section-entry-renderer #collapser-item
 
 ! Search - keep videos and channels
 www.youtube.com##ytd-search ytd-item-section-renderer > #contents > :is(:not(ytd-video-renderer, ytd-channel-renderer), ytd-video-renderer:has([aria-label="Shorts"]))
 ! Search - video metadata
-www.youtube.com##ytd-search ytd-item-section-renderer ytd-video-renderer .text-wrapper > :not(#meta, #channel-info, #expandable-metadata) 
+www.youtube.com##ytd-search ytd-item-section-renderer ytd-video-renderer .text-wrapper > :not(#meta, #channel-info, #expandable-metadata)
 ! Search - channel handle, channel description
 www.youtube.com##ytd-search ytd-item-section-renderer ytd-channel-renderer #info :is(#subscribers, #dot, #description)
 
@@ -44,8 +41,6 @@ www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > :is
 www.youtube.com##.ytp-doubletap-ui-legacy
 ! Video Overlay - sponsor popup
 www.youtube.com##.ytp-paid-content-overlay
-! Video Overlay - product button
-! www.youtube.com##.ytp-suggested-action
 ! Video Overlay - annotations
 /annotations_module.js$script,xhr,important,domain=youtube.com
 ! Video Overlay - endscreen
@@ -56,12 +51,13 @@ www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
 
 ! Video Metadata - alert (covid-19, You're not alone)
 www.youtube.com###clarify-box
-! Video Metadata - DeArrow edit thumbnail button
-www.youtube.com##.cbTitleButtonContainer
+! Video Metadata - DeArrow buttons
+www.youtube.com##.cbButton
 ! Video Metadata - join button
 www.youtube.com###sponsor-button
-! Video Metadata - subscribe button (if already subscribed)
-www.youtube.com###top-row > #owner yt-animated-action
+! Video Metadata - subscribe button (if already subscribed) 
+www.youtube.com##yt-animated-action
+!              ###top-row > #owner yt-animated-action
 ! Video Metadata - subscribe smartimation
 www.youtube.com##yt-smartimation > :not(.smartimation__content)
 ! Video Metadata - animated views, likes
@@ -99,7 +95,11 @@ www.youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
 www.youtube.com##ytd-thumbnail-overlay-time-status-renderer
 
 ! Channel Page - banner
-www.youtube.com###page-header-banner
+www.youtube.com##.page-header-banner
+! Channel Page - handle
+www.youtube.com##.meta-item:has(#channel-handle)
+! Channel Page - links
+www.youtube.com###channel-header-links
 ! Channel Page - shorts tab, community tab, store tab
 www.youtube.com##yt-tab-shape:is([tab-title="Shorts"], [tab-title="Community"], [tab-title="Store"])
 ! Channel Page - slider
@@ -128,6 +128,5 @@ aniwave.to,aniwave.vc,aniwave.li###controls > :is(.left, .right) :not(.auto-play
 aniwave.to,aniwave.vc,aniwave.li##.next-episode
 aniwave.to,aniwave.vc,aniwave.li###search .tip
 
-! 2024-05-16 https://magma.com
 magma.com##modals-box.ng-tns-c1263415635-0
 

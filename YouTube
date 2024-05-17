@@ -130,3 +130,19 @@ aniwave.to,aniwave.vc,aniwave.li###search .tip
 
 magma.com##modals-box.ng-tns-c1263415635-0
 
+! EDU
+||login.microsoftonline.com^$subdocument,xhr,domain=~microsoftonline.com|~microsoft.com|~office365.com|~office.com|~bing.com|~live.com|~exlibrisgroup.com|~kanopy.com
+
+! THIRD-PARTY PAYMENT / LOGIN
+!||paypal.com^$3p,domain=~ebay.com|~ticketmaster.com
+!||paypalobjects.com$domain=~ebay.com|~paypal.com|~ticketmaster.com
+/PaypalExpressCheckout
+
+! REDDIT
+! Hide AutoModerator comments
+! https://www.reddit.com/r/uBlockOrigin/comments/140lp15/any_way_to_hide_automoderator_comments_with_ublock/
+reddit.com##[data-testid="comment_author_link"][href="/user/AutoModerator/"]:upward(.Comment)
+reddit.com##.comment .author[href="https://old.reddit.com/user/AutoModerator"]:upward(.comment)
+! Hide Moderator section
+www.reddit.com###moderation_section
+

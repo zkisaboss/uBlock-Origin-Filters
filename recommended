@@ -1,12 +1,13 @@
-! Network - offline service worker
-||youtube.com/sw.js$script
+! ! Network - offline service worker
+! ||youtube.com/sw.js$script,domain=youtube.com
+! www.youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.service_worker_enabled, false)
 
 ! Header - yoodle image/animations
-||gstatic.com/youtube/img/promos/*$image
+||gstatic.com/youtube/img/promos/*$image,domain=youtube.com
 ! Header - search predictions
 ||youtube.com/complete/search$domain=youtube.com
 ! Header - clutter (voice search button, create button) | (test: alerts button badge)
-www.youtube.com###masthead-container #container :is(#voice-search-button, ytd-topbar-menu-button-renderer.style-default, .yt-spec-icon-badge-shape__badge)
+www.youtube.com###masthead-container #container :is(#voice-search-button, ytd-topbar-menu-button-renderer.style-default)
 
 ! Homepage - shorts button
 www.youtube.com###chips > :has([title="Shorts"])
@@ -39,6 +40,8 @@ www.youtube.com##ytd-search ytd-two-column-search-results-renderer #contents > y
 www.youtube.com###movie_player > .ytp-gradient-top
 ! Video Overlay - top controls (video title, watch later button, share button)
 www.youtube.com###movie_player > .ytp-chrome-top
+! Video Overlay - play button
+www.youtube.com###movie_player > .ytp-cued-thumbnail-overlay > .ytp-large-play-button
 ! Video Overlay - sponsor popup
 www.youtube.com###movie_player > .ytp-paid-content-overlay
 ! Video Overlay - fast-forward icon
@@ -46,7 +49,8 @@ www.youtube.com###movie_player > .ytp-doubletap-ui-legacy
 ! Video Overlay - bottom gradient
 www.youtube.com###movie_player > .ytp-gradient-bottom
 ! Video Overlay - bottom controls (volume button, time display, autoplay toggle, subtitles button, miniplayer button, size button, play on tv button)
-www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > :not(.ytp-play-button, .ytp-next-button, .ytp-settings-button, .ytp-fullscreen-button)
+www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > .ytp-left-controls > :not(.ytp-play-button, .ytp-next-button)
+www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > .ytp-right-controls > :not(.ytp-settings-button, .ytp-fullscreen-button)
 ! Video Overlay - annotations
 /annotations_module.js$script,xhr,important,domain=youtube.com
 ! Video Overlay - endscreen
@@ -59,8 +63,8 @@ www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
 www.youtube.com###clarify-box
 ! Video Metadata - join button
 www.youtube.com###sponsor-button
-! Video Metadata - subscribe button (if already subscribed) | "#top-row > #owner" prevents hiding on channel page
-www.youtube.com###top-row > #owner yt-animated-action
+! Video Metadata - subscribe button (if already subscribed) 
+www.youtube.com###owner #subscribe-button yt-animated-action
 ! Video Metadata - subscribe smartimation
 www.youtube.com##yt-smartimation > :not(.smartimation__content)
 ! Video Metadata - live updates (views, likes)
@@ -72,21 +76,21 @@ www.youtube.com###top-row #flexible-item-buttons:has(.yt-spec-button-shape-next-
 ! Video Metadata - info panel
 www.youtube.com###middle-row
 ! Video Metadata - notice
-www.youtube.com##ytd-metadata-row-container-renderer
+! www.youtube.com##ytd-metadata-row-container-renderer
 ! Video Metadata - ticket shelf
 www.youtube.com###ticket-shelf
 
 ! Video Description - supertitle
 www.youtube.com###info-container > #info > a.yt-simple-endpoint
-! Video Description - junk | can be aggressive
+! Video Description - junk
 www.youtube.com###description #items
 ! Video Description - stop scrolling on "show less" (ubo only)
 www.youtube.com##+js(aeld, yt-text-inline-expander-collapse-clicked)
 
 ! Comment Section - emoji button
 www.youtube.com###emoji-button
-! Comment Section - profile pictures (optional)
-! www.youtube.com###body > #author-thumbnail
+! Comment Section - profile pictures
+www.youtube.com###body > #author-thumbnail
 
 ! Recommendation Sidebar - badges
 www.youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
@@ -99,10 +103,15 @@ www.youtube.com##.page-header-banner
 www.youtube.com##.meta-item:has(#channel-handle)
 ! Channel Page - links
 www.youtube.com###channel-header-links
-! Channel Page - clutter (shorts tab, community tab, store tab) | visual fix: removed slider
+! Channel Page - clutter (shorts tab, community tab, store tab) | temporary fix: removed slider
 www.youtube.com##yt-tab-shape:is([tab-title="Shorts"], [tab-title="Community"], [tab-title="Store"]), .yt-tab-group-shape-wiz__slider
 
 ! Popups - tooltips
 www.youtube.com##.fade-in-animation
 ! Popups - perfomance alert
 www.youtube.com###toast
+
+! Extensions (DeArrow) - buttons
+www.youtube.com##.cbButton
+! Extensions (Return YouTube Dislike) - like/dislike bar
+www.youtube.com##.ryd-tooltip

@@ -37,14 +37,21 @@ www.youtube.com##ytd-search ytd-item-section-renderer ytd-video-renderer .text-w
 ! Search - channel handle, channel description
 www.youtube.com##ytd-search ytd-item-section-renderer ytd-channel-renderer #info :is(#subscribers, #dot, #description)
 
-! Video Overlay - video title, watch later icon, share icon
+! Video Overlay - top gradient
+www.youtube.com###movie_player > .ytp-gradient-top
+! Video Overlay - top controls (video title, watch later button, share button)
 www.youtube.com###movie_player > .ytp-chrome-top
-! Video Overlay - volume area, time display, autoplay toggle, subtitles button, miniplayer button, size button, play on tv button
-www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > :is(.ytp-left-controls, .ytp-right-controls) > :not(.ytp-play-button, .ytp-next-button, .ytp-settings-button, .ytp-fullscreen-button)
-! Video Overlay - fast-forward icon
-www.youtube.com##.ytp-doubletap-ui-legacy
+! Video Overlay - play button
+www.youtube.com###movie_player > .ytp-cued-thumbnail-overlay > .ytp-large-play-button
 ! Video Overlay - sponsor popup
-www.youtube.com##.ytp-paid-content-overlay
+www.youtube.com###movie_player > .ytp-paid-content-overlay
+! Video Overlay - fast-forward icon
+www.youtube.com###movie_player > .ytp-doubletap-ui-legacy
+! Video Overlay - bottom gradient
+www.youtube.com###movie_player > .ytp-gradient-bottom
+! Video Overlay - bottom controls (volume button, time display, autoplay toggle, subtitles button, miniplayer button, size button, play on tv button)
+www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > .ytp-left-controls > :not(.ytp-play-button, .ytp-next-button)
+www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > .ytp-right-controls > :not(.ytp-settings-button, .ytp-fullscreen-button)
 ! Video Overlay - annotations
 /annotations_module.js$script,xhr,important,domain=youtube.com
 ! Video Overlay - endscreen

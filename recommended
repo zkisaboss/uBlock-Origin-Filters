@@ -1,0 +1,108 @@
+! Network - offline service worker
+||youtube.com/sw.js$script
+
+! Header - yoodle image/animations
+||gstatic.com/youtube/img/promos/*$image
+! Header - search predictions
+||youtube.com/complete/search$domain=youtube.com
+! Header - clutter (voice search button, create button) | (test: alerts button badge)
+www.youtube.com###masthead-container #container :is(#voice-search-button, ytd-topbar-menu-button-renderer.style-default, .yt-spec-icon-badge-shape__badge)
+
+! Homepage - shorts button
+www.youtube.com###chips > :has([title="Shorts"])
+! Homepage - distractions
+www.youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
+www.youtube.com###contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
+
+! Sidebar - sign in section (if not logged in)
+www.youtube.com###sections > ytd-guide-signin-promo-renderer
+! Sidebar - explore section
+www.youtube.com###sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(Explore))
+! Sidebar - more from youtube section
+www.youtube.com###sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(More from YouTube))
+! Sidebar - clutter (shorts button, you button, your channel button, your videos button, your clips button, send feedback button)
+www.youtube.com###sections #endpoint:is([title="Shorts"], [title="You"], [title="Your channel"], [title="Your videos"], [title="Your clips"], [title="Help"], [title="Send feedback"])
+! Sidebar - newness dot
+www.youtube.com###newness-dot
+! Sidebar - footer section (primary links, secondary links, copyright)
+www.youtube.com###guide-renderer > #footer
+
+! Mini Sidebar - shorts button
+www.youtube.com##.ytd-mini-guide-renderer[aria-label="Shorts"]
+
+! Search - keep videos & channels
+www.youtube.com##ytd-search ytd-two-column-search-results-renderer #contents > ytd-item-section-renderer > #contents > :is(:not(ytd-video-renderer, ytd-channel-renderer), ytd-video-renderer:has([aria-label="Shorts"]))
+! Search - clutter (video metadata, channel handle, channel description)
+www.youtube.com##ytd-search ytd-two-column-search-results-renderer #contents > ytd-item-section-renderer :is(ytd-video-renderer .text-wrapper > :not(#meta, #channel-info, #expandable-metadata), ytd-channel-renderer #info :is(#subscribers, #dot, #description))
+
+! Video Overlay - top gradient
+www.youtube.com###movie_player > .ytp-gradient-top
+! Video Overlay - top controls (video title, watch later button, share button)
+www.youtube.com###movie_player > .ytp-chrome-top
+! Video Overlay - sponsor popup
+www.youtube.com###movie_player > .ytp-paid-content-overlay
+! Video Overlay - fast-forward icon
+www.youtube.com###movie_player > .ytp-doubletap-ui-legacy
+! Video Overlay - bottom gradient
+www.youtube.com###movie_player > .ytp-gradient-bottom
+! Video Overlay - bottom controls (volume button, time display, autoplay toggle, subtitles button, miniplayer button, size button, play on tv button)
+www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > :not(.ytp-play-button, .ytp-next-button, .ytp-settings-button, .ytp-fullscreen-button)
+! Video Overlay - annotations
+/annotations_module.js$script,xhr,important,domain=youtube.com
+! Video Overlay - endscreen
+/endscreen.js$script,xhr,important,domain=youtube.com
+
+! Video Settings - enhanced bitrate selector
+www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+
+! Video Metadata - alert (covid-19, You're not alone)
+www.youtube.com###clarify-box
+! Video Metadata - join button
+www.youtube.com###sponsor-button
+! Video Metadata - subscribe button (if already subscribed) | "#top-row > #owner" prevents hiding on channel page
+www.youtube.com###top-row > #owner yt-animated-action
+! Video Metadata - subscribe smartimation
+www.youtube.com##yt-smartimation > :not(.smartimation__content)
+! Video Metadata - live updates (views, likes)
+||youtube.com/youtubei/v1/updated_metadata$domain=youtube.com
+! Video Metadata - share button, create button, download button, thanks button, clip button
+www.youtube.com###top-row yt-button-view-model:has(button:not([aria-label="Save to playlist"]))
+! Video Metadata - disabled buttons
+www.youtube.com###top-row #flexible-item-buttons:has(.yt-spec-button-shape-next--disabled)
+! Video Metadata - info panel
+www.youtube.com###middle-row
+! Video Metadata - notice
+www.youtube.com##ytd-metadata-row-container-renderer
+! Video Metadata - ticket shelf
+www.youtube.com###ticket-shelf
+
+! Video Description - supertitle
+www.youtube.com###info-container > #info > a.yt-simple-endpoint
+! Video Description - junk | can be aggressive
+www.youtube.com###description #items
+! Video Description - stop scrolling on "show less" (ubo only)
+www.youtube.com##+js(aeld, yt-text-inline-expander-collapse-clicked)
+
+! Comment Section - emoji button
+www.youtube.com###emoji-button
+! Comment Section - profile pictures (optional)
+! www.youtube.com###body > #author-thumbnail
+
+! Recommendation Sidebar - badges
+www.youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
+! Recommendation Sidebar - video length
+www.youtube.com##ytd-thumbnail-overlay-time-status-renderer
+
+! Channel Page - banner
+www.youtube.com##.page-header-banner
+! Channel Page - handle
+www.youtube.com##.meta-item:has(#channel-handle)
+! Channel Page - links
+www.youtube.com###channel-header-links
+! Channel Page - clutter (shorts tab, community tab, store tab) | visual fix: removed slider
+www.youtube.com##yt-tab-shape:is([tab-title="Shorts"], [tab-title="Community"], [tab-title="Store"]), .yt-tab-group-shape-wiz__slider
+
+! Popups - tooltips
+www.youtube.com##.fade-in-animation
+! Popups - perfomance alert
+www.youtube.com###toast

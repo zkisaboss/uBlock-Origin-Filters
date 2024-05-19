@@ -2,29 +2,33 @@
 ||www.youtube.com/sw.js$script
 
 ! Header - yoodle image/animations
-||www.gstatic.com/youtube/img/promos/*$image
+||gstatic.com/youtube/img/promos/*$image,domain=youtube.com
 ! Header - search predictions
-||youtube.com/complete/search
-! Header - voice search button, create button, alerts button badge
-www.youtube.com##ytd-masthead > #container :is(#voice-search-button, ytd-topbar-menu-button-renderer.style-default, .yt-spec-icon-badge-shape__badge)
+||youtube.com/complete/search$domain=youtube.com
+! Header - clutter (voice search button, create button) | (test: alerts button badge)
+www.youtube.com###masthead-container #container :is(#voice-search-button, ytd-topbar-menu-button-renderer.style-default)
 
 ! Homepage - shorts button
-www.youtube.com##yt-chip-cloud-chip-renderer:has([title="Shorts"])
-! Homepage - placeholders and distractions
+www.youtube.com###chips > :has([title="Shorts"])
+! Homepage - distractions
 www.youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
-www.youtube.com##ytd-rich-grid-renderer > #contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
+www.youtube.com###contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
 
 ! Sidebar - sign in section (if not logged in)
-www.youtube.com##tp-yt-app-drawer ytd-guide-renderer > #sections > ytd-guide-signin-promo-renderer
+www.youtube.com###sections > ytd-guide-signin-promo-renderer
 ! Sidebar - explore section
-www.youtube.com##tp-yt-app-drawer ytd-guide-renderer > #sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(Explore))
-! Sidebar - more from YouTube section
-www.youtube.com##tp-yt-app-drawer ytd-guide-renderer > #sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(More from YouTube))
-! Sidebar - shorts button, you button, your channel button, your videos button, your clips button, newness dot, send feedback button
-www.youtube.com##.ytd-guide-entry-renderer:is([title="Shorts"], [title="You"], [title="Your channel"], [title="Your videos"], [title="Your clips"], #newness-dot, [title="Help"], [title="Send feedback"])
-www.youtube.com##.ytd-mini-guide-entry-renderer[title="Shorts"]
-! Sidebar - footer section (primary links, secondary links, & copyright)
-www.youtube.com##tp-yt-app-drawer ytd-guide-renderer > #footer
+www.youtube.com###sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(Explore))
+! Sidebar - more from youtube section
+www.youtube.com###sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(More from YouTube))
+! Sidebar - clutter (shorts button, you button, your channel button, your videos button, your clips button, send feedback button)
+www.youtube.com###sections #endpoint:is([title="Shorts"], [title="You"], [title="Your channel"], [title="Your videos"], [title="Your clips"], [title="Help"], [title="Send feedback"])
+! Sidebar - newness dot
+www.youtube.com###newness-dot
+! Sidebar - footer section (primary links, secondary links, copyright)
+www.youtube.com###guide-renderer > #footer
+
+! Mini Sidebar - shorts button
+www.youtube.com##.ytd-mini-guide-renderer[aria-label="Shorts"]
 
 ! Search - keep videos and channels
 www.youtube.com##ytd-search ytd-item-section-renderer > #contents > :is(:not(ytd-video-renderer, ytd-channel-renderer), ytd-video-renderer:has([aria-label="Shorts"]))

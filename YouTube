@@ -1,4 +1,5 @@
 ! Network - offline service worker (for strong connections)
+youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.service_worker_enabled, false)
 ||youtube.com/sw.js$script,domain=youtube.com
 
 ! Header - yoodle image/animations
@@ -91,8 +92,6 @@ youtube.com###description #items
 ! Video Description - stop scrolling on "show less" (ubo only)
 youtube.com##+js(aeld, yt-text-inline-expander-collapse-clicked)
 
-! Comment Section - emoji button
-! youtube.com###emoji-button
 ! Comment Section - profile pictures
 youtube.com###body > #author-thumbnail
 
@@ -152,3 +151,11 @@ aniwave.to###controls > :is(.left, .right) > :not(.auto-play, .auto-skip, .prev,
 aniwave.to##.alert
 
 aniwave.to###i-bottom
+
+magma.com##modals-box
+
+! EDU
+! ||login.microsoftonline.com^$subdocument,xhr,domain=~microsoftonline.com|~microsoft.com|~office365.com|~office.com|~bing.com|~live.com|~exlibrisgroup.com|~kanopy.com
+
+! disable bitwarden autofill animation
+! *##.com-bitwarden-browser-animated-fill:style(animation: none !important; -webkit-animation: none !important)

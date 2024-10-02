@@ -1,117 +1,176 @@
-! ! Network - offline service worker
+! Network - offline service worker (for people with strong connections)
 ! ||youtube.com/sw.js$script,domain=youtube.com
-! www.youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.service_worker_enabled, false)
 
 ! Header - yoodle image/animations
-||gstatic.com/youtube/img/promos/*$image,domain=youtube.com
+||gstatic.com/youtube/img/promos/*.webp$image,domain=youtube.com
 ! Header - search predictions
 ||youtube.com/complete/search$domain=youtube.com
-! Header - clutter (voice search button, create button) | (test: alerts button badge)
-www.youtube.com###masthead-container #container :is(#voice-search-button, ytd-topbar-menu-button-renderer.style-default)
+! Header - clutter (country code, voice search button, create button, alerts button badge)
+youtube.com###masthead-container #container :is(#country-code, #voice-search-button, ytd-topbar-menu-button-renderer.style-default, .yt-spec-icon-badge-shape__badge)
 
 ! Homepage - shorts button
-www.youtube.com###chips > :has([title="Shorts"])
+youtube.com###chips > :has([title="Shorts"])
 ! Homepage - distractions
-www.youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
-www.youtube.com###contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
+youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
+youtube.com###contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
 
 ! Sidebar - sign in section (if not logged in)
-www.youtube.com###sections > ytd-guide-signin-promo-renderer
+youtube.com###sections > ytd-guide-signin-promo-renderer
 ! Sidebar - explore section
-www.youtube.com###sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(Explore))
+youtube.com###sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(Explore))
 ! Sidebar - more from youtube section
-www.youtube.com###sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(More from YouTube))
+youtube.com###sections > ytd-guide-section-renderer:has(#guide-section-title:has-text(More from YouTube))
 ! Sidebar - clutter (shorts button, you button, your channel button, your videos button, your clips button, send feedback button)
-www.youtube.com###sections #endpoint:is([title="Shorts"], [title="You"], [title="Your channel"], [title="Your videos"], [title="Your clips"], [title="Help"], [title="Send feedback"])
+youtube.com###sections #endpoint:is([title="Shorts"], [title="You"], [title="Your channel"], [title="Your videos"], [title="Your clips"], [title="Help"], [title="Send feedback"])
 ! Sidebar - newness dot
-www.youtube.com###newness-dot
+youtube.com###newness-dot
 ! Sidebar - footer section (primary links, secondary links, copyright)
-www.youtube.com###guide-renderer > #footer
+youtube.com###guide-renderer > #footer
 
 ! Mini Sidebar - shorts button
-www.youtube.com##.ytd-mini-guide-renderer[aria-label="Shorts"]
+youtube.com##.ytd-mini-guide-renderer[aria-label="Shorts"]
 
-! Search - keep videos & channels
-www.youtube.com##ytd-search ytd-two-column-search-results-renderer #contents > ytd-item-section-renderer > #contents > :is(:not(ytd-video-renderer, ytd-channel-renderer), ytd-video-renderer:has([aria-label="Shorts"]))
-! Search - clutter (video metadata, channel handle, channel description)
-www.youtube.com##ytd-search ytd-two-column-search-results-renderer #contents > ytd-item-section-renderer :is(ytd-video-renderer .text-wrapper > :not(#meta, #channel-info, #expandable-metadata), ytd-channel-renderer #info :is(#subscribers, #dot, #description))
+! Search - keep videos
+youtube.com##ytd-search ytd-item-section-renderer > #contents > :is(:not(ytd-video-renderer, yt-showing-results-for-renderer, [icon-name="promo-full-height:EMPTY_SEARCH"]), ytd-video-renderer:has([aria-label="Shorts"])), ytd-secondary-search-container-renderer
+! Search - clutter (video description, badges)
+youtube.com##ytd-search ytd-item-section-renderer ytd-video-renderer .text-wrapper > :not(#meta, #channel-info, #expandable-metadata)
 
 ! Video Overlay - top gradient
-www.youtube.com###movie_player > .ytp-gradient-top
+youtube.com###movie_player > .ytp-gradient-top
 ! Video Overlay - top controls (video title, watch later button, share button)
-www.youtube.com###movie_player > .ytp-chrome-top
+youtube.com###movie_player > .ytp-chrome-top
 ! Video Overlay - play button
-www.youtube.com###movie_player > .ytp-cued-thumbnail-overlay > .ytp-large-play-button
+youtube.com###movie_player > .ytp-cued-thumbnail-overlay > .ytp-large-play-button
 ! Video Overlay - sponsor popup
-www.youtube.com###movie_player > .ytp-paid-content-overlay
+youtube.com###movie_player > .ytp-paid-content-overlay
 ! Video Overlay - fast-forward icon
-www.youtube.com###movie_player > .ytp-doubletap-ui-legacy
+youtube.com###movie_player > .ytp-doubletap-ui-legacy
 ! Video Overlay - bottom gradient
-www.youtube.com###movie_player > .ytp-gradient-bottom
+youtube.com###movie_player > .ytp-gradient-bottom
 ! Video Overlay - bottom controls (volume button, time display, autoplay toggle, subtitles button, miniplayer button, size button, play on tv button)
-www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > .ytp-left-controls > :not(.ytp-play-button, .ytp-next-button)
-www.youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > .ytp-right-controls > :not(.ytp-settings-button, .ytp-fullscreen-button)
+youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > .ytp-left-controls > :not(.ytp-play-button, .ytp-next-button)
+youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > .ytp-right-controls > :not(.ytp-settings-button, .ytp-fullscreen-button)
 ! Video Overlay - annotations
 /annotations_module.js$script,xhr,important,domain=youtube.com
 ! Video Overlay - endscreen
 /endscreen.js$script,xhr,important,domain=youtube.com
 
+! Video Settings - disable cinematics
+youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_cinematics, false)
 ! Video Settings - enhanced bitrate selector
-www.youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
 
 ! Video Metadata - alert (covid-19, You're not alone)
-www.youtube.com###clarify-box
+youtube.com###clarify-box
 ! Video Metadata - join button
-www.youtube.com###sponsor-button
-! Video Metadata - subscribe button (if already subscribed) 
-www.youtube.com###owner #subscribe-button yt-animated-action
-! Video Metadata - subscribe smartimation
-www.youtube.com##yt-smartimation > :not(.smartimation__content)
+youtube.com###sponsor-button
+! Video Metadata - smartimations (subscribe, smash that like button)
+! youtube.com##yt-smartimation > :not(.smartimation__content)
+! Video Metadata - animated subscribe
+youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_animated_actions, false)
+! Video Metadata - animated like
+youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_animated_like, false)
+youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_animated_like_lazy_load, false)
 ! Video Metadata - live updates (views, likes)
 ||youtube.com/youtubei/v1/updated_metadata$domain=youtube.com
 ! Video Metadata - share button, create button, download button, thanks button, clip button
-www.youtube.com###top-row yt-button-view-model:has(button:not([aria-label="Save to playlist"]))
+youtube.com###top-row yt-button-view-model:has(button:not([aria-label="Save to playlist"]))
 ! Video Metadata - disabled buttons
-www.youtube.com###top-row #flexible-item-buttons:has(.yt-spec-button-shape-next--disabled)
+youtube.com###top-row #flexible-item-buttons:has(.yt-spec-button-shape-next--disabled)
 ! Video Metadata - info panel
-www.youtube.com###middle-row
-! Video Metadata - notice
-! www.youtube.com##ytd-metadata-row-container-renderer
+youtube.com###middle-row
+! Video Metadata - metadata renderer (large info cards, notice)
+youtube.com###above-the-fold + ytd-metadata-row-container-renderer
 ! Video Metadata - ticket shelf
-www.youtube.com###ticket-shelf
+youtube.com###ticket-shelf
 
 ! Video Description - supertitle
-www.youtube.com###info-container > #info > a.yt-simple-endpoint
+youtube.com###info-container > #info > a.yt-simple-endpoint
 ! Video Description - junk
-www.youtube.com###description #items
+youtube.com###description #items
 ! Video Description - stop scrolling on "show less" (ubo only)
-www.youtube.com##+js(aeld, yt-text-inline-expander-collapse-clicked)
+youtube.com##+js(aeld, yt-text-inline-expander-collapse-clicked)
 
-! Comment Section - emoji button
-www.youtube.com###emoji-button
 ! Comment Section - profile pictures
-www.youtube.com###body > #author-thumbnail
+youtube.com###body > #author-thumbnail
 
-! Recommendation Sidebar - badges
-www.youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
+! Recommendation Sidebar - badges (New, 4K, CC, Live)
+youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
 ! Recommendation Sidebar - video length
-www.youtube.com##ytd-thumbnail-overlay-time-status-renderer
+! youtube.com##ytd-thumbnail-overlay-time-status-renderer
+! Recommendation Sidebar - reel shelf
+www.youtube.com##ytd-reel-shelf-renderer
 
 ! Channel Page - banner
-www.youtube.com##.page-header-banner
+youtube.com##.page-header-banner
 ! Channel Page - handle
-www.youtube.com##.meta-item:has(#channel-handle)
+youtube.com##.meta-item:has(#channel-handle)
 ! Channel Page - links
-www.youtube.com###channel-header-links
+youtube.com###channel-header-links
 ! Channel Page - clutter (shorts tab, community tab, store tab) | temporary fix: removed slider
-www.youtube.com##yt-tab-shape:is([tab-title="Shorts"], [tab-title="Community"], [tab-title="Store"]), .yt-tab-group-shape-wiz__slider
+youtube.com##yt-tab-shape:is([tab-title="Shorts"], [tab-title="Community"], [tab-title="Store"]), .yt-tab-group-shape-wiz__slider
 
 ! Popups - tooltips
-www.youtube.com##.fade-in-animation
+youtube.com##.fade-in-animation
 ! Popups - perfomance alert
-www.youtube.com###toast
+youtube.com###toast
 
-! Extensions (DeArrow) - buttons
-www.youtube.com##.cbButton
-! Extensions (Return YouTube Dislike) - like/dislike bar
-www.youtube.com##.ryd-tooltip
+! Discord - clutter
+discord.com##.buttons_d0696b > .grow_dd4f85
+discord.com##.stickerButton_d0696b
+discord.com##.channelAppLauncher_df39bd
+
+! Sep 6, 2024 https://hianime.to
+hianime.to##section.block_area_home.block_area
+hianime.to###footer
+hianime.to###discussion
+hianime.to##.schedule-alert
+
+! Reddit Anti-Bullshit Filter - Remove Visual Nuisances
+reddit.com###advertise-button
+reddit.com##[aria-label="Reddit resources"]
+reddit.com##.justify-end.flex-col.flex.grow.py-md.visible
+! Pretty sure any trending section on any website is gonna suck.
+reddit.com###TrendingPostsContainer
+
+! Up and downvotes are a bad way to rate a post considering how braindead most reddit users are.
+reddit.com##.Comment span:has-text(/(\d+) point/i)
+reddit.com##.Comment span:has-text(/ upvoted/i)
+reddit.com##div[id^="vote-arrows"]
+reddit.com##.Post:style(padding-left: 0 !important)
+reddit.com##.Comment:style(padding-left: 20px !important)
+
+! Awards are incorrectly used and a scam.
+reddit.com###COIN_PURCHASE_DROPDOWN_ID
+reddit.com##a[href$="/premium"],a[href$="/coins"]
+reddit.com##button:has-text(Try Now):upward(4)
+reddit.com##.icon-addGildDashed:upward(div)
+reddit.com##span[id^="PostAwardBadges"]
+reddit.com##button:has-text(Give Award)
+||redditstatic.com/*/awards,domain=reddit.com
+||redd.it/award_images,domain=reddit.com
+||redditstatic.com/desktop2x/AwardTooltip.*.js,domain=reddit.com
+
+! Anti-Facebook
+! https://github.com/gorhill/uBlock/wiki/Static-filter-syntax#entity
+! https://gist.github.com/imcodingideas/f07be3889411b323e5f8051899b9d9cc
+! https://gist.github.com/illvart/36cc34e024904c78c11fcf32256e8f8a
+! https://cleanbrowsing.org/2021/10/how-to-block-facebook/
+||facebook.*^$all,important
+||facebook.*.edgekey.net^$all,important
+||facebook.*.edgesuite.net^$all,important
+||facebook-web-clients.appspot.com^$all,important
+||fb.*^$all,important
+||fbcdn.*^$all,important
+||fbcdn-*.akamaihd.net^$all,important
+||fbsbx.*^$all,important
+||fbsbx.*.online-metrix.net^$all,important
+||fburl.*^$all,important
+||instagram.*^$all,important
+||instagramstatic-*.akamaihd.net^$all,important
+||instagramstatic-*.akamaihd.net.edgesuite.net^$all,important
+||cdninstagram.*^$all,important
+||messenger.*^$all,important
+||m.me^$all,important
+||tfbnw.*^$all,important
+||whatsapp.*^$all,important

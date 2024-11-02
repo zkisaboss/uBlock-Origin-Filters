@@ -1,19 +1,23 @@
-! Network - offline service worker (for strong connections)
-youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.service_worker_enabled, false)
+! Network - offline service worker (for people with strong connections)
 ||youtube.com/sw.js$script,domain=youtube.com
+
+! All - new pink theme
+youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.enable_cairo_refresh_signature_moments_web, false)
 
 ! Header - yoodle image/animations
 ||gstatic.com/youtube/img/promos/*.webp$image,domain=youtube.com
 ! Header - search predictions
 ||youtube.com/complete/search$domain=youtube.com
-! Header - clutter (voice search button, create button) | (test: alerts button badge)
-youtube.com###masthead-container #container :is(#voice-search-button, ytd-topbar-menu-button-renderer.style-default, .yt-spec-icon-badge-shape__badge)
+! Header - clutter (country code, voice search button, create button, alerts button badge) +bug when not logged in
+youtube.com###masthead-container #container :is(#country-code, #voice-search-button, ytd-button-renderer, ytd-topbar-menu-button-renderer.style-default, .yt-spec-icon-badge-shape__badge)
 
 ! Homepage - shorts button
 youtube.com###chips > :has([title="Shorts"])
-! Homepage - distractions
+! Homepage - distractions (non-videos)
 youtube.com##ytd-rich-grid-row, ytd-rich-grid-row > #contents:style(display: contents !important;)
 youtube.com###contents.ytd-rich-grid-renderer > :not(ytd-rich-item-renderer, ytd-rich-grid-row, ytd-continuation-item-renderer)
+! Homepage - videos under 10 minutes
+youtube.com##ytd-rich-item-renderer:has(ytd-thumbnail #time-status>#text:is([aria-label^="9 minutes"],[aria-label^="8 minutes"],[aria-label^="7 minutes"],[aria-label^="6 minutes"],[aria-label^="5 minutes"],[aria-label^="4 minutes"],[aria-label^="3 minutes"],[aria-label^="2 minutes"],[aria-label^="1 minute"],[aria-label$="seconds"]:not([aria-label*="hour"],[aria-label*="minute"])))
 
 ! Sidebar - sign in section (if not logged in)
 youtube.com###sections > ytd-guide-signin-promo-renderer
@@ -25,20 +29,20 @@ youtube.com###sections > ytd-guide-section-renderer:has(#guide-section-title:has
 youtube.com###sections #endpoint:is([title="Shorts"], [title="You"], [title="Your channel"], [title="Your videos"], [title="Your clips"], [title="Help"], [title="Send feedback"])
 ! Sidebar - newness dot
 youtube.com###newness-dot
-! Sidebar - footer section (primary links, secondary links, copyright)
+! Sidebar - footer section (primary links, secondary links, copyright section)
 youtube.com###guide-renderer > #footer
 
 ! Mini Sidebar - shorts button
 youtube.com##.ytd-mini-guide-renderer[aria-label="Shorts"]
 
-! Search - keep videos & channels
-youtube.com##ytd-search ytd-two-column-search-results-renderer #contents > ytd-item-section-renderer > #contents > :is(:not(ytd-video-renderer, ytd-channel-renderer), ytd-video-renderer:has([aria-label="Shorts"]))
-! Search - clutter (video metadata, channel handle, channel description)
-youtube.com##ytd-search ytd-two-column-search-results-renderer #contents > ytd-item-section-renderer :is(ytd-video-renderer .text-wrapper > :not(#meta, #channel-info, #expandable-metadata), ytd-channel-renderer #info :is(#subscribers, #dot, #description))
+! Search - distractions (non-videos)
+youtube.com##ytd-search ytd-item-section-renderer > #contents > :is(:not(ytd-video-renderer, yt-showing-results-for-renderer, [icon-name="promo-full-height:EMPTY_SEARCH"]), ytd-video-renderer:has([aria-label="Shorts"])), ytd-secondary-search-container-renderer
+! Search - clutter (video description, badges)
+youtube.com##ytd-search ytd-item-section-renderer ytd-video-renderer .text-wrapper > :not(#meta, #channel-info, #expandable-metadata)
 
 ! Video Overlay - top gradient
 youtube.com###movie_player > .ytp-gradient-top
-! Video Overlay - top controls (video title, watch later button, share button)
+! Video Overlay - top controls (title section, watch later button, share button)
 youtube.com###movie_player > .ytp-chrome-top
 ! Video Overlay - play button
 youtube.com###movie_player > .ytp-cued-thumbnail-overlay > .ytp-large-play-button
@@ -54,9 +58,12 @@ youtube.com###movie_player > .ytp-chrome-bottom > .ytp-chrome-controls > .ytp-ri
 ! Video Overlay - annotations
 /annotations_module.js$script,xhr,important,domain=youtube.com
 ! Video Overlay - endscreen
+youtube.com##.ytp-cued-thumbnail-overlay
 /endscreen.js$script,xhr,important,domain=youtube.com
+! Video Overlay - pink tint (progress bar)
+youtube.com##.ytp-cairo-refresh-signature-moments:remove-class(ytp-cairo-refresh-signature-moments)
 
-! Video Settings - disable cinematics
+! Video Settings - cinematics
 youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_cinematics, false)
 ! Video Settings - enhanced bitrate selector
 youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
@@ -98,9 +105,9 @@ youtube.com###body > #author-thumbnail
 ! Recommendation Sidebar - badges (New, 4K, CC, Live)
 youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
 ! Recommendation Sidebar - video length
-youtube.com##ytd-thumbnail-overlay-time-status-renderer
+! youtube.com##ytd-thumbnail-overlay-time-status-renderer
 ! Recommendation Sidebar - reel shelf
-www.youtube.com##ytd-reel-shelf-renderer
+youtube.com##ytd-reel-shelf-renderer
 
 ! Channel Page - banner
 youtube.com##.page-header-banner
@@ -115,47 +122,3 @@ youtube.com##yt-tab-shape:is([tab-title="Shorts"], [tab-title="Community"], [tab
 youtube.com##.fade-in-animation
 ! Popups - perfomance alert
 youtube.com###toast
-
-! Extensions (DeArrow) - buttons
-youtube.com##.cbButton
-! Extensions (Return YouTube Dislike) - like/dislike bar
-youtube.com##.ryd-tooltip
-
-! .to .vc .li
-||aniwave.to/assets/_bnx/$domain=aniwave.to
-
-! Header - quick access 
-aniwave.to###search .tip
-! Header - quick menu items (all)
-aniwave.to###quick-menu > :is(a, div)
-
-! Home - recommendation slides
-aniwave.to###body > .hotest
-! Home - tip/popup
-aniwave.to##.mb-4
-! Home - continue watching
-aniwave.to###continue-watching
-! Home - more recommendations
-aniwave.to##.top-tables
-! Home - episode calendar
-aniwave.to###schedule > .head > .title
-aniwave.to###schedule > .head > .days > :not(.swiper-container)
-! Home - footer
-aniwave.to##footer
-
-! Watch - clutter (info section, season section, watch second)
-aniwave.to###w-info, #w-seasons, #watch-second
-! Watch - clutter (extra buttons)
-aniwave.to###controls > :is(.left, .right) > :not(.auto-play, .auto-skip, .prev, .next, .fa-solid)
-! Watch - alert
-aniwave.to##.alert
-
-aniwave.to###i-bottom
-
-magma.com##modals-box
-
-! EDU
-! ||login.microsoftonline.com^$subdocument,xhr,domain=~microsoftonline.com|~microsoft.com|~office365.com|~office.com|~bing.com|~live.com|~exlibrisgroup.com|~kanopy.com
-
-! disable bitwarden autofill animation
-! *##.com-bitwarden-browser-animated-fill:style(animation: none !important; -webkit-animation: none !important)

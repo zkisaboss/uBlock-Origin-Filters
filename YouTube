@@ -1,3 +1,4 @@
+! Title: YouTube filters
 ! Cairo [All] - pink theme
 youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.enable_cairo_refresh_signature_moments_web, false)
 ! Cairo [Video Overlay] - pink tint (progress bar)

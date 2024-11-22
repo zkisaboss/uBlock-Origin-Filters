@@ -27,6 +27,8 @@ youtube.com##:is([page-subtype="home"], [page-subtype="subscriptions"]) #content
 youtube.com##[page-subtype="home"] ytd-rich-item-renderer:has(ytd-thumbnail #time-status > #text:is([aria-label^="9 minutes"], [aria-label^="8 minutes"], [aria-label^="7 minutes"], [aria-label^="6 minutes"], [aria-label^="5 minutes"], [aria-label^="4 minutes"], [aria-label^="3 minutes"], [aria-label^="2 minutes"], [aria-label^="1 minute"], [aria-label$="seconds"]:not([aria-label*="hour"], [aria-label*="minute"])))
 ! Homepage - watched videos
 youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
+! Homepage - videos older than a year
+youtube.com##[page-subtype="home"]  ytd-rich-item-renderer:has(#video-title-link[aria-label*="years ago"])
 
 ! Sidebar - sign in section (if not logged in)
 youtube.com##ytd-guide-signin-promo-renderer
@@ -76,7 +78,7 @@ youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_cinematics, false
 ! Video Settings - enhanced bitrate selector
 youtube.com##.ytp-premium-label:upward(.ytp-menuitem)
 
-! Video Metadata - alert (covid-19, You're not alone)
+! Video Metadata - alerts (covid-19, You're not alone)
 youtube.com###clarify-box
 ! Video Metadata - join button
 youtube.com###sponsor-button

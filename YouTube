@@ -2,7 +2,7 @@
 ||youtube.com/shorts/$doc,uritransform=/^\/shorts\/([^\/?]+)/\/watch?v=\$1/
 
 ! Settings - disable captions (f3), enable dark mode (f6), disable video previews (f7)
-www.youtube.com##+js(trusted-set-cookie, PREF, f4=4000000&tz=Atlantic.Reykjavik&f6=400&f3=8&f7=1, 63072000, /, domain, youtube.com)
+youtube.com##+js(trusted-set-cookie, PREF, f4=4000000&tz=Atlantic.Reykjavik&f6=400&f3=8&f7=1, 63072000, /, domain, youtube.com)
 
 ! Header - refresh animation
 youtube.com##yt-page-navigation-progress
@@ -20,7 +20,7 @@ youtube.com###voice-search-button
 youtube.com##[aria-label="Create"]:upward(ytd-button-renderer)
 ! youtube.com##[aria-label="Create"]:upward(ytd-button-renderer):style(opacity:0 !important; pointer-events:none !important)
 ! Header - alerts button badge
-youtube.com##.yt-spec-icon-badge-shape__badge
+youtube.com##.ytSpecIconBadgeShapeBadge
 
 ! Homepage - shorts button
 youtube.com###chips > :has([title^="Shorts"])
@@ -63,7 +63,7 @@ youtube.com###sections #endpoint:is([title="Shorts"], [title="You"], [title^="Yo
 youtube.com###guide-renderer > #footer
 
 ! Mini Sidebar - shorts button
-youtube.com##.ytd-mini-guide-renderer[aria-label="Shorts"]
+youtube.com##ytd-mini-guide-entry-renderer:has([aria-label="Shorts"])
 
 ! Search - distractions (unrelated videos, non-videos)
 youtube.com##ytd-search ytd-shelf-renderer
@@ -85,7 +85,7 @@ youtube.com##.ytp-doubletap-ui-legacy
 ! Video Overlay - bottom gradient
 ! youtube.com##.ytp-gradient-bottom
 ! Video Overlay - bottom controls (volume button, time display, autoplay toggle, subtitles button, miniplayer button, size button, play on tv button)
-youtube.com##.ytp-left-controls > :not(.ytp-play-button, .ytp-next-button)
+youtube.com##.ytp-left-controls > :not(.ytp-play-button, .ytp-next-button, .ytp-time-display)
 youtube.com##.ytp-right-controls-left  > .ytp-autonav-toggle
 youtube.com##.ytp-right-controls-left  > .ytp-subtitles-button
 youtube.com##.ytp-right-controls-right > .ytp-size-button
@@ -138,6 +138,8 @@ youtube.com##+js(aeld, yt-text-inline-expander-collapse-clicked)
 ! Comment Section - profile pictures
 ! youtube.com###body > #author-thumbnail
 
+! Recommendation Sidebar - Offers
+youtube.com###offer-module
 ! Recommendation Sidebar - badges (New, 4K, CC, Live)
 youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer
 ! Recommendation Sidebar - reel shelf
@@ -167,20 +169,15 @@ youtube.com###toast
 ! ||youtube.com/error_204?^$xhr
 ! ||youtube.com/generate_204
 
-! Sep 16, 2025 https://www.youtube.com
-www.youtube.com##grid-shelf-view-model
 
 ! Oct 3, 2025 https://www.youtube.com
 ! www.youtube.com###secondary
 
-! Oct 10, 2025 https://www.youtube.com
-www.youtube.com###clarify-box
-
 ! Jan 11, 2026 https://www.youtube.com
 ! www.youtube.com##.ytd-comment-thread-renderer.style-scope.thread-hitbox
 
-! Apr 3, 2026 https://www.youtube.com
-www.youtube.com##.ytSpecIconBadgeShapeBadge
+! Sep 16, 2025 https://www.youtube.com
+! www.youtube.com##grid-shelf-view-model
 
-! Aug 8, 2026 https://www.youtube.com
-www.youtube.com##ytd-mini-guide-entry-renderer:has([aria-label="Shorts"])
+! Oct 10, 2025 https://www.youtube.com
+! www.youtube.com###clarify-box

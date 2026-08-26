@@ -18,36 +18,21 @@ youtube.com##[client-ve-type="307188"]
 youtube.com###voice-search-button
 ! Header - create button
 youtube.com##[aria-label="Create"]:upward(ytd-button-renderer)
-! youtube.com##[aria-label="Create"]:upward(ytd-button-renderer):style(opacity:0 !important; pointer-events:none !important)
 ! Header - alerts button badge
 youtube.com##.ytSpecIconBadgeShapeBadge
 
 ! Homepage - shorts button
 youtube.com###chips > :has([title^="Shorts"])
 ! Homepage - videos under 10 minutes
-! youtube.com##[page-subtype="home"] #time-status > :is([aria-label$="ds"]:not([aria-label*="h"],[aria-label*="m"]),[aria-label^="1 m"],[aria-label^="2 m"],[aria-label^="3 m"],[aria-label^="4 m"],[aria-label^="5 m"],[aria-label^="6 m"],[aria-label^="7 m"],[aria-label^="8 m"],[aria-label^="9 m"]):upward(ytd-rich-item-renderer)
-! Homepage - watched videos
-! youtube.com##yt-thumbnail-bottom-overlay-view-model:upward(ytd-rich-item-renderer)
+youtube.com##ytd-rich-item-renderer:has(.ytBadgeShapeText:has-text(/^[0-9]:[0-5][0-9]$/))
 ! Homepage - non-videos
 youtube.com###contents.ytd-rich-grid-renderer > ytd-rich-section-renderer
+! Homepage - watched videos
+! youtube.com##.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment:upward(ytd-rich-item-renderer)
 ! Homepage - members-only videos
 youtube.com##ytd-rich-item-renderer:has(.ytBadgeShapeCommerce)
-! youtube.com##ytd-rich-item-renderer:has(.ytBadgeShapeCommerce .ytBadgeShapeText:has-text(Members first))
 ! Homepage - four videos per row
 ! youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-items-per-row: 4 !important;)
-! Homepage Fixes - grid allignment
-youtube.com##ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column]:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important;)
-! youtube.com##ytd-rich-grid-renderer>#contents:style(margin-left: calc(var(--ytd-rich-grid-gutter-margin)) !important)
-! Homepage Fixes - ghost-grid allignment
-youtube.com##.ghost-grid:style(margin-left: unset !important;)
-
-! Move homepage placeholders to the end
-! www.youtube.com##ytd-browse[page-subtype="home"] :is(ytd-rich-grid-row, #contents.ytd-rich-grid-row):style(display: contents !important)
-! Fixes grid alignment
-! www.youtube.com##ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column]:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important)
-! www.youtube.com##ytd-rich-grid-renderer>#contents:style(margin-left: calc(var(--ytd-rich-grid-gutter-margin)) !important)
-! www.youtube.com###content.ytd-rich-section-renderer:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important; margin-right: calc(var(--ytd-rich-grid-item-margin)*2.5) !important;)
-
 
 ! Sidebar - sign in section (if not logged in)
 youtube.com##ytd-guide-signin-promo-renderer
@@ -66,16 +51,14 @@ youtube.com###guide-renderer > #footer
 youtube.com##ytd-mini-guide-entry-renderer:has([aria-label="Shorts"])
 
 ! Search - distractions (unrelated videos, non-videos)
-youtube.com##ytd-search ytd-shelf-renderer
 youtube.com##ytd-video-renderer:has([aria-label="Shorts"])
-! Search - watched videos
-! youtube.com##ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
+youtube.com##ytd-search ytd-shelf-renderer
+youtube.com##grid-shelf-view-model
 ! Search - clutter (video description, badges, etc.)
 youtube.com##ytd-search #dismissible > .text-wrapper > :not(#meta, #channel-info, #expandable-metadata)
 
-
 ! Video Overlay - top gradient
-! youtube.com##.ytp-gradient-top
+youtube.com##.ytp-gradient-top
 ! Video Overlay - top controls (title section, watch later button, share button)
 ! youtube.com##.ytp-chrome-top
 ! Video Overlay - play button
@@ -96,18 +79,17 @@ youtube.com##.html5-video-player.ended-mode .ytp-fullscreen-grid
 /endscreen.js$script,xhr,important,domain=youtube.com
 youtube.com##.ytp-cued-thumbnail-overlay
 
-
 ! Video Settings - ambient mode
 ! youtube.com###cinematics.ytd-watch-flexy
 youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_cinematics, false)
 ! Video Settings - count (audio track, subtitles/cc)
-youtube.com##.ytp-menuitem-label-count
+! youtube.com##.ytp-menuitem-label-count
 ! Video Settings - playback speed (visual fix)
-youtube.com##+js(trusted-replace-outbound-text, String.prototype.replace, /Custom \((.+?)\)/, ' $1', condition, /Custom \(.+?\)/)
+! youtube.com##+js(trusted-replace-outbound-text, String.prototype.replace, /Custom \((.+?)\)/, ' $1', condition, /Custom \(.+?\)/)
 ! Video Settings - sleep timer
 youtube.com##.ytp-menuitem:has-text(Sleep timer)
 ! Video Settings - enhanced bitrate selector (quality subsetting)
-youtube.com##.ytp-premium-label:upward(.ytp-menuitem)
+! youtube.com##.ytp-premium-label:upward(.ytp-menuitem)
   
 ! Video Metadata - alerts (covid-19, You're not alone)
 ! youtube.com###clarify-box
@@ -168,16 +150,3 @@ youtube.com###toast
 ! ||youtube.com/player_204?
 ! ||youtube.com/error_204?^$xhr
 ! ||youtube.com/generate_204
-
-
-! Oct 3, 2025 https://www.youtube.com
-! www.youtube.com###secondary
-
-! Jan 11, 2026 https://www.youtube.com
-! www.youtube.com##.ytd-comment-thread-renderer.style-scope.thread-hitbox
-
-! Sep 16, 2025 https://www.youtube.com
-! www.youtube.com##grid-shelf-view-model
-
-! Oct 10, 2025 https://www.youtube.com
-! www.youtube.com###clarify-box

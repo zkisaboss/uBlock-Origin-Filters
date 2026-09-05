@@ -100,6 +100,7 @@ youtube.com###sponsor-button
 ! Video Metadata - share button, create button, thanks button, clip button
 youtube.com###top-row yt-button-view-model:has(button:not([aria-label="Save to playlist"]))
 ! Video Metadata - download button
+youtube.com##ytd-download-button-renderer
 ! youtube.com##.ytd-download-button-renderer:upward(.ytd-menu-renderer)
 ! Video Metadata - disabled buttons
 ! youtube.com##.yt-spec-button-shape-next--disabled:upward(#flexible-item-buttons)
